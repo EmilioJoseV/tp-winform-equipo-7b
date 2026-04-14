@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace GestionArticulosCatalogoApp
 {
-    internal class Articulo
+    internal class Articulos
     {
         public int Id { get; set; }
         public string Codigo { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public float Precio { get; set; }
+        public Imagenes Imagenes { get; set; }
 
     }
 }

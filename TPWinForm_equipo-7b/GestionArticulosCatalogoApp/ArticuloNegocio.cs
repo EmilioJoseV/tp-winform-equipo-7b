@@ -9,19 +9,37 @@ namespace GestionArticulosCatalogoApp
 {
     internal class ArticuloNegocio
     {
-        public List<Articulo> listar()
+        public List<Articulos> listar()
         {
-            List<Articulo> lista = new List<Articulo>();
+            List<Articulos> lista = new List<Articulos>();
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
             SqlDataReader lector;
-            //conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true";
-            //comando.CommandType = System.Data.CommandType.Text;
-            //comando.CommandText = "S";
-            //comando.Connection = conexion;
 
             try
             {
+                conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true";
+                comando.CommandType = System.Data.CommandType.Text;
+                comando.CommandText = "select A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, I.ImagenUrl From Imagenes I, Articulos A Where A.id = I.IdArticulo";
+                comando.Connection = conexion;
+
+                conexion.Open();
+                lector = comando.ExecuteReader();
+
+                while (lector.Read())
+                {
+                    Articulos aux = new Articulos();
+                    aux.Id = (int)lector["Id"];
+                    aux.Codigo = (string)lector["Codigo"];
+                    aux.Nombre = (string)lector["Nombre"];
+                    aux.Descripcion = (string)lector["Descripcion"];
+                    aux.Precio = (float)(decimal)lector["Precio"];
+                    aux.Imagenes = new Imagenes();
+                    aux.Imagenes.ImagenUrl = (string)lector["ImagenUrl"];
+
+                    lista.Add(aux);
+                }
+                conexion.Close();
 
                 return lista;
             }
