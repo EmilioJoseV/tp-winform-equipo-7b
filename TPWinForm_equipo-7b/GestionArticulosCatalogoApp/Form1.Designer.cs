@@ -39,13 +39,13 @@
             this.dgvArticulo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvArticulo.Location = new System.Drawing.Point(26, 58);
             this.dgvArticulo.Name = "dgvArticulo";
-            this.dgvArticulo.Size = new System.Drawing.Size(451, 232);
+            this.dgvArticulo.Size = new System.Drawing.Size(553, 232);
             this.dgvArticulo.TabIndex = 0;
             this.dgvArticulo.SelectionChanged += new System.EventHandler(this.dgvArticulo_SelectionChanged);
             // 
             // pcbxArticulos
             // 
-            this.pcbxArticulos.Location = new System.Drawing.Point(505, 58);
+            this.pcbxArticulos.Location = new System.Drawing.Point(622, 58);
             this.pcbxArticulos.Name = "pcbxArticulos";
             this.pcbxArticulos.Size = new System.Drawing.Size(229, 232);
             this.pcbxArticulos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -56,7 +56,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(771, 376);
+            this.ClientSize = new System.Drawing.Size(936, 375);
             this.Controls.Add(this.pcbxArticulos);
             this.Controls.Add(this.dgvArticulo);
             this.Name = "Form1";

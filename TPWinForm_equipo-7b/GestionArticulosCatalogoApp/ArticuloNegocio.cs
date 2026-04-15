@@ -20,7 +20,7 @@ namespace GestionArticulosCatalogoApp
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "select A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, I.ImagenUrl From Imagen I, Articulo A Where A.id = I.IdArticulo";
+                comando.CommandText = "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, I.ImagenUrl, C.Descripcion AS Categoria FROM ARTICULOS A INNER JOIN IMAGENES I ON A.Id = I.IdArticulo INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id";
                 comando.Connection = conexion;
 
                 conexion.Open();
@@ -36,6 +36,8 @@ namespace GestionArticulosCatalogoApp
                     aux.Precio = (float)(decimal)lector["Precio"];
                     aux.Imagenes = new Imagen();
                     aux.Imagenes.ImagenUrl = (string)lector["ImagenUrl"];
+                    aux.Categorias = new Categoria();
+                    aux.Categorias.Descripcion = (string)lector["Categoria"];
 
                     lista.Add(aux);
                 }

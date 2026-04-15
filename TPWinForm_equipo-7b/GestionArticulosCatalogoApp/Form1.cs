@@ -23,6 +23,7 @@ namespace GestionArticulosCatalogoApp
             ArticuloNegocio negocio = new ArticuloNegocio();
             listaArticulos = negocio.listar();
             dgvArticulo.DataSource = listaArticulos;
+            dgvArticulo.Columns["Imagenes"].Visible = false;
             pcbxArticulos.Load(listaArticulos[0].Imagenes.ImagenUrl);
         }
 
