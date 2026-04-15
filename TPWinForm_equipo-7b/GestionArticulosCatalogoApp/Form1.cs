@@ -12,7 +12,7 @@ namespace GestionArticulosCatalogoApp
 {
     public partial class Form1 : Form
     {
-        private List<Articulos> listaArticulos;
+        private List<Articulo> listaArticulos;
         public Form1()
         {
             InitializeComponent();
@@ -30,7 +30,7 @@ namespace GestionArticulosCatalogoApp
         {
             if (dgvArticulo.CurrentRow != null)
             {
-                Articulos seleccionado = (Articulos)dgvArticulo.CurrentRow.DataBoundItem;
+                Articulo seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
                 cargarImagen(seleccionado.Imagenes?.ImagenUrl);
             }
         }

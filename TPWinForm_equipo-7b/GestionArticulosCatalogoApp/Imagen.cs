@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GestionArticulosCatalogoApp
 {
-    internal class Imagenes
+    internal class Imagen
     {
         public int IdImagen { get; set; }
         public int IdArticulo { get; set; }
