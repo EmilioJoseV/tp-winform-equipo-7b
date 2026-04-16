@@ -1,6 +1,6 @@
 ﻿namespace GestionArticulosCatalogoApp
 {
-    partial class Form1
+    partial class frmAppPrincipal
     {
         /// <summary>
         /// Required designer variable.

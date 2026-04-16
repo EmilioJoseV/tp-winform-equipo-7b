@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace GestionArticulosCatalogoApp
 {
-    public partial class Form1 : Form
+    public partial class frmAppPrincipal : Form
     {
         private List<Articulo> listaArticulos;
-        public Form1()
+        public frmAppPrincipal()
         {
             InitializeComponent();
         }
