@@ -8,6 +8,6 @@ namespace Negocio
 {
     public class MarcaNegocio
     {
-
+        // Aca irian las propiedades de MarcaNegocio
     }
 }
