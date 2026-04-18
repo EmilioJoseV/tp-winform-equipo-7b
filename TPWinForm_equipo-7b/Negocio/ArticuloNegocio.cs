@@ -16,7 +16,7 @@ namespace Negocio
 
             try
             {
-                conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true";
+                conexion = new SqlConnection("server=localhost,1440;database=CATALOGO_P3_DB;user=sa;password=programacion3!;TrustServerCertificate=True;Encrypt=False");
                 comando.CommandType = System.Data.CommandType.Text;
                 comando.CommandText = "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, I.ImagenUrl, C.Descripcion AS Categoria FROM ARTICULOS A INNER JOIN IMAGENES I ON A.Id = I.IdArticulo INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id";
                 comando.Connection = conexion;

@@ -19,7 +19,7 @@ namespace Negocio
 
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true");
+            conexion = new SqlConnection("server=localhost,1440;database=CATALOGO_P3_DB;user=sa;password=programacion3!;TrustServerCertificate=True;Encrypt=False");
             comando = new SqlCommand();
         }
 

@@ -19,7 +19,7 @@ namespace WinformApp
             ArticuloNegocio negocio = new ArticuloNegocio();
             listaArticulos = negocio.listar();
             dgvArticulo.DataSource = listaArticulos;
-            dgvArticulo.Columns["Imagenes"].Visible = false;
+            dgvArticulo.Columns["Imagen"].Visible = false;
             pcbxArticulos.Load(listaArticulos[0].Imagen.ImagenUrl);
         }
 
