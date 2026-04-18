@@ -1,3 +1,5 @@
 <Solution>
+  <Project Path="Dominio/Dominio.csproj" Id="696b987a-48be-4f28-9a3a-2c3ad02a3690" />
   <Project Path="GestionArticulosCatalogoApp/GestionArticulosCatalogoApp.csproj" Id="beb2f782-bfdc-4098-82ea-981e6768d02d" />
+  <Project Path="Negocio/Negocio.csproj" Id="32167027-9dce-4789-af40-06d95a5fc0ef" />
 </Solution>
