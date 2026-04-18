@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
 using Dominio;
 
@@ -35,8 +32,8 @@ namespace Negocio
                     aux.Nombre = (string)lector["Nombre"];
                     aux.Descripcion = (string)lector["Descripcion"];
                     aux.Precio = (float)(decimal)lector["Precio"];
-                    aux.Imagenes = new Imagen();
-                    aux.Imagenes.ImagenUrl = (string)lector["ImagenUrl"];
+                    aux.Imagen = new Imagen();
+                    aux.Imagen.ImagenUrl = (string)lector["ImagenUrl"];
                     aux.Categoria = new Categoria();
                     aux.Categoria.Descripcion = (string)lector["Categoria"];
 
@@ -48,7 +45,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw ex; 
+                throw ex;
             }
         }
     }

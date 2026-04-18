@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GestionArticulosCatalogoApp")]
+[assembly: AssemblyTitle("WinformApp")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("GestionArticulosCatalogoApp")]
+[assembly: AssemblyProduct("WinformApp")]
 [assembly: AssemblyCopyright("Copyright ©  2026")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("beb2f782-bfdc-4098-82ea-981e6768d02d")]
+[assembly: Guid("7c522b9f-0eca-48dd-a5a2-8e3b2419b918")]
 
 // Version information for an assembly consists of the following four values:
 //
