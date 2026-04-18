@@ -19,7 +19,11 @@ namespace Negocio
 
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server=localhost,1440;database=CATALOGO_P3_DB;user=sa;password=programacion3!;TrustServerCertificate=True;Encrypt=False");
+            //Con Docker
+            //conexion = new SqlConnection("server=localhost,1440;database=CATALOGO_P3_DB;user=sa;password=programacion3!;TrustServerCertificate=True;Encrypt=False");
+            
+            //Con SQL Server Express
+            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true");
             comando = new SqlCommand();
         }
 

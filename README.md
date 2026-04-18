@@ -44,7 +44,8 @@ Etapa 2: Construir la interacción con la base de datos y validaciones correspon
 	  1) Espero 3 minutos, y abrir CMD donde esta el proyecto o usar el comando "cd" para ir al directorio donde esta este repositorio.
 	  2) Copiar y ejecutar el comando cmd:
 			sqlcmd -S localhost,1440 -U sa -P "programacion3!" -C -b -i ".\Resources\CATALOGO_DB_v3.sql"	
-	Debe quedar asi: <img width="1998" height="632" alt="Ejemplo-docker-base-de-datos" src="https://github.com/user-attachments/assets/300def6b-2887-4264-989e-83d57f211c0b" />
+	Debe quedar asi: 
+	![Alt text](./Resources\CATALOGO_DB_v3)
  4) Una vez que se creo el contenedor de SQLServer y se creo la base de datos, podemos:
 	- Encenderlo con el comando en cmd:	docker start SQLServer2025-Programacion3
 	- Apagarlo con el comando en cmd:	docker stop SQLServer2025-Programacion3
