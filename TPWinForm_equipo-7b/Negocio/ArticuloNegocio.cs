@@ -37,8 +37,8 @@ namespace Negocio
                     aux.Precio = (float)(decimal)lector["Precio"];
                     aux.Imagenes = new Imagen();
                     aux.Imagenes.ImagenUrl = (string)lector["ImagenUrl"];
-                    aux.Categorias = new Categoria();
-                    aux.Categorias.Descripcion = (string)lector["Categoria"];
+                    aux.Categoria = new Categoria();
+                    aux.Categoria.Descripcion = (string)lector["Categoria"];
 
                     lista.Add(aux);
                 }
