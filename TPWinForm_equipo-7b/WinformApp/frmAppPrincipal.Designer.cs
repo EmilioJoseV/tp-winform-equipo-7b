@@ -51,6 +51,7 @@
             this.pcbxArticulos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbxArticulos.TabIndex = 1;
             this.pcbxArticulos.TabStop = false;
+            this.pcbxArticulos.Click += new System.EventHandler(this.pcbxArticulos_Click);
             // 
             // frmAppPrincipal
             // 

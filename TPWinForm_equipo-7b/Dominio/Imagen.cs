@@ -8,12 +8,19 @@ namespace Dominio
 {
     public class Imagen
     {
-        public int IdImagen { get; set; }
+        public Imagen() { }
+        public Imagen(int id, int idArticulo, string imagenUrl)
+        {
+            this.Id = id;
+            this.IdArticulo = idArticulo;
+            this.ImagenUrl = imagenUrl;
+        }
+        public int Id { get; set; }
         public int IdArticulo { get; set; }
         public string ImagenUrl { get; set; }
         public override string ToString()
         {
-            return ImagenUrl;
+            return "URL:" + ImagenUrl;
         }
     }
 }
