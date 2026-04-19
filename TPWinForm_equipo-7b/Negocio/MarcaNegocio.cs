@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,28 @@ namespace Negocio
 {
     public class MarcaNegocio
     {
-        // Aca irian las propiedades de MarcaNegocio
+        public List<Marca> listar()
+        {
+            List<Marca> lista = new List<Marca>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("select Id, Descripcion From MARCAS");
+                datos.ejecutarLectura();
+
+
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+           
+        }
+
     }
 }
+
+
