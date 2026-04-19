@@ -19,6 +19,13 @@ namespace Negocio
                 datos.setearConsulta("select Id, Descripcion From MARCAS");
                 datos.ejecutarLectura();
 
+                 while(datos.Lector.Read())
+                {
+                    Marca aux = new Marca();
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    lista.Add(aux);
+                }
 
 
                 return lista;
@@ -28,7 +35,10 @@ namespace Negocio
 
                 throw ex;
             }
-           
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
     }
