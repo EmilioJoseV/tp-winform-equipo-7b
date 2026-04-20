@@ -50,6 +50,11 @@ namespace Negocio
 
         }
 
+        public Boolean EliminarMarca(Marca marca) 
+        {
+            return true;
+        }
+
     }
 }
 
