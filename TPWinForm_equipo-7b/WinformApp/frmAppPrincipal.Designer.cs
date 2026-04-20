@@ -30,6 +30,7 @@
         {
             this.dgvArticulo = new System.Windows.Forms.DataGridView();
             this.pcbxArticulos = new System.Windows.Forms.PictureBox();
+            this.btnAgregar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbxArticulos)).BeginInit();
             this.SuspendLayout();
@@ -39,13 +40,13 @@
             this.dgvArticulo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvArticulo.Location = new System.Drawing.Point(26, 58);
             this.dgvArticulo.Name = "dgvArticulo";
-            this.dgvArticulo.Size = new System.Drawing.Size(553, 232);
+            this.dgvArticulo.Size = new System.Drawing.Size(650, 232);
             this.dgvArticulo.TabIndex = 0;
             this.dgvArticulo.SelectionChanged += new System.EventHandler(this.dgvArticulo_SelectionChanged);
             // 
             // pcbxArticulos
             // 
-            this.pcbxArticulos.Location = new System.Drawing.Point(622, 58);
+            this.pcbxArticulos.Location = new System.Drawing.Point(734, 58);
             this.pcbxArticulos.Name = "pcbxArticulos";
             this.pcbxArticulos.Size = new System.Drawing.Size(229, 232);
             this.pcbxArticulos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -53,11 +54,22 @@
             this.pcbxArticulos.TabStop = false;
             this.pcbxArticulos.Click += new System.EventHandler(this.pcbxArticulos_Click);
             // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Location = new System.Drawing.Point(26, 296);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregar.TabIndex = 2;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
             // frmAppPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(936, 375);
+            this.ClientSize = new System.Drawing.Size(1042, 405);
+            this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.pcbxArticulos);
             this.Controls.Add(this.dgvArticulo);
             this.Name = "frmAppPrincipal";
@@ -74,6 +86,7 @@
 
         private System.Windows.Forms.DataGridView dgvArticulo;
         private System.Windows.Forms.PictureBox pcbxArticulos;
+        private System.Windows.Forms.Button btnAgregar;
     }
 }
 

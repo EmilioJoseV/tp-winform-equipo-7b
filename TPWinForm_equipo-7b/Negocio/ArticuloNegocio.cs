@@ -170,15 +170,16 @@ namespace Negocio
 
         public void Crear(Articulo articulo)
         {
+            AccesoDatos datos = new AccesoDatos();
             try
             {
-                AccesoDatos.setearConsulta("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, Precio, IdMarca, IdCategoria) VALUES (@Codigo, @Nombre, @Descripcion, @Precio, @IdMarca, @IdCategoria)");
+                AccesoDatos.setearConsulta("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) VALUES (@Codigo, @Nombre, @Descripcion, @IdMarca, @IdCategoria, @Precio)");
                 AccesoDatos.setearParametro("@Codigo", articulo.Codigo);
                 AccesoDatos.setearParametro("@Nombre", articulo.Nombre);
                 AccesoDatos.setearParametro("@Descripcion", articulo.Descripcion);
-                AccesoDatos.setearParametro("@Precio", articulo.Precio);
                 AccesoDatos.setearParametro("@IdMarca", articulo.Marca.Id);
                 AccesoDatos.setearParametro("@IdCategoria", articulo.Categoria.Id);
+                AccesoDatos.setearParametro("@Precio", articulo.Precio);
                 AccesoDatos.ejecutarAccion();
             }
             catch (Exception ex)
