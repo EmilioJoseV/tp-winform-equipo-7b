@@ -59,6 +59,14 @@ namespace Negocio
             return new Marca();
         
         } 
+        public List<Marca> BuscarMarca(string criterio)
+        {
+
+            return new List<Marca>();
+        }
+
+
+       
 
     }
 }
