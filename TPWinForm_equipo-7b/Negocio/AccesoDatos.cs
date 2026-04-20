@@ -12,6 +12,7 @@ namespace Negocio
         private SqlConnection conexion;
         private SqlCommand comando;
         private SqlDataReader lector;
+        
         public SqlDataReader Lector
         {
             get { return lector; }
@@ -29,12 +30,15 @@ namespace Negocio
 
         public void setearConsulta(string consulta)
         {
+            comando.Parameters.Clear();
             comando.CommandType = System.Data.CommandType.Text;
             comando.CommandText = consulta;
         }
+
         public void ejecutarLectura()
         {
             comando.Connection = conexion;
+            
             try
             {
                 conexion.Open();
@@ -45,16 +49,36 @@ namespace Negocio
 
                 throw ex;
             }
-
         }
+
+        public void ejecutarAccion()
+        {
+            comando.Connection = conexion;
+
+            try
+            {
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void setearParametro(string nombreParam, object valorParam)
+        {
+            comando.Parameters.AddWithValue(nombreParam, valorParam);
+        }
+
         public void cerrarConexion()
         {
             if (lector != null)
             {
                 lector.Close();
             }
+
             conexion.Close();
         }
-
     }
 }

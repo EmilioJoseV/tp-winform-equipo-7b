@@ -17,10 +17,10 @@ namespace WinformApp
         private void Form1_Load(object sender, EventArgs e)
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
-            listaArticulos = negocio.listar();
+            listaArticulos = negocio.Listar();
             dgvArticulo.DataSource = listaArticulos;
-//            dgvArticulo.Columns["Imagen"].Visible = false;
-            pcbxArticulos.Load(listaArticulos[0].Imagenes[0].ImagenUrl);
+            //dgvArticulo.Columns["Imagen"].Visible = false;
+            //pcbxArticulos.Load(listaArticulos[0].Imagenes[0].ImagenUrl);
         }
 
         private void dgvArticulo_SelectionChanged(object sender, EventArgs e)
@@ -28,7 +28,7 @@ namespace WinformApp
             if (dgvArticulo.CurrentRow != null)
             {
                 Articulo seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
-                cargarImagen(seleccionado.Imagenes?[0]?.ImagenUrl);
+                cargarImagen(seleccionado.Imagenes.Count > 0 ? seleccionado.Imagenes[0].ImagenUrl : null);
             }
         }
         private void cargarImagen(string imagen)

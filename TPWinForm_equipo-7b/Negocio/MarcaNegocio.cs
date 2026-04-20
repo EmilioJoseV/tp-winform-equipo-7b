@@ -10,20 +10,28 @@ namespace Negocio
 {
     public class MarcaNegocio
     {
-        public List<Marca> listar()
+        private AccesoDatos AccesoDatos;
+
+        public MarcaNegocio()
+        {
+            AccesoDatos = new AccesoDatos();
+        }   
+
+        public List<Marca> Listar()
         {
             List<Marca> lista = new List<Marca>();
-            AccesoDatos datos = new AccesoDatos();
+            
+            AccesoDatos AccesoDatos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("select Id, Descripcion From MARCAS");
-                datos.ejecutarLectura();
+                AccesoDatos.setearConsulta("select Id, Descripcion From MARCAS");
+                AccesoDatos.ejecutarLectura();
 
-                while (datos.Lector.Read())
+                while (AccesoDatos.Lector.Read())
                 {
                     Marca aux = new Marca();
-                    aux.Id = (int)datos.Lector["Id"];
-                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    aux.Id = (int)AccesoDatos.Lector["Id"];
+                    aux.Descripcion = (string)AccesoDatos.Lector["Descripcion"];
                     lista.Add(aux);
                 }
 
@@ -37,11 +45,37 @@ namespace Negocio
             }
             finally
             {
-                datos.cerrarConexion();
+                AccesoDatos.cerrarConexion();
             }
         }
 
+        public Marca ObtenerPorId(int id)
+        {
+            Marca marca = new Marca();
+            
+            try
+            {
+                AccesoDatos.setearConsulta("SELECT Id, Descripcion FROM MARCAS WHERE Id = @id");
+                AccesoDatos.setearParametro("@id", id);
+                AccesoDatos.ejecutarLectura();
+                
+                while (AccesoDatos.Lector.Read())
+                {
+                    marca.Id = (int)AccesoDatos.Lector["Id"];
+                    marca.Descripcion = (string)AccesoDatos.Lector["Descripcion"];
+                }
 
+                return marca;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                AccesoDatos.cerrarConexion();
+            }
+        }
 
         public Marca CrearMarca(Marca marca)
 
@@ -50,24 +84,18 @@ namespace Negocio
 
         }
 
-        public Boolean EliminarMarca(Marca marca) 
+        public void EliminarMarca(Marca marca) 
         {
-            return true;
         }
-        public Marca ActualizarMarca(Marca marca)
-        { 
-            return new Marca();
-        
+
+        public void ActualizarMarca(Marca marca)
+        {         
         } 
         public List<Marca> BuscarMarca(string criterio)
         {
 
             return new List<Marca>();
         }
-
-
-       
-
     }
 }
 

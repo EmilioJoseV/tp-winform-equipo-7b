@@ -12,23 +12,29 @@ namespace Negocio
 {
     public class ImagenNegocio
     {
+        private AccesoDatos AccesoDatos;
 
-        public List<Imagen> listar()
+        public ImagenNegocio()
+        {
+            AccesoDatos = new AccesoDatos();
+        }   
+
+        public List<Imagen> Listar()
         {
             List<Imagen> lista = new List<Imagen>();
-            AccesoDatos datos = new AccesoDatos();
+
             try
             {
-                datos.setearConsulta("select Id, IdArticulo,ImagenUrl from IMAGENES");
-                datos.ejecutarLectura();
+                AccesoDatos.setearConsulta("select Id, IdArticulo,ImagenUrl from IMAGENES");
+                AccesoDatos.ejecutarLectura();
 
-                while (datos.Lector.Read())
+                while (AccesoDatos.Lector.Read())
                 {
                     Imagen aux = new Imagen();
-                    aux.Id = (int)datos.Lector["Id"];
-                    aux.IdArticulo = (int)datos.Lector["IdArticulo"];
+                    aux.Id = (int)AccesoDatos.Lector["Id"];
+                    aux.IdArticulo = (int)AccesoDatos.Lector["IdArticulo"];
 
-                    aux.ImagenUrl = (string)datos.Lector["ImagenUrl"];
+                    aux.ImagenUrl = (string)AccesoDatos.Lector["ImagenUrl"];
 
                     lista.Add(aux);
                 }
@@ -43,13 +49,42 @@ namespace Negocio
             }
             finally
             {
-                datos.cerrarConexion();
+                AccesoDatos.cerrarConexion();
             }
 
         }
 
+        public List<Imagen> ObtenerImagenesPorArticuloId(int id)
+        {
+            try
+            {
+                List<Imagen> imagenes = new List<Imagen>();
 
+                AccesoDatos.setearConsulta("SELECT Id, IdArticulo, ImagenUrl FROM IMAGENES WHERE IdArticulo = @id");
+                AccesoDatos.setearParametro("@id", id);
+                AccesoDatos.ejecutarLectura();
+                
+                while (AccesoDatos.Lector.Read())
+                {
+                    Imagen aux = new Imagen();
+                    aux.Id = (int)AccesoDatos.Lector["Id"];
+                    aux.IdArticulo = (int)AccesoDatos.Lector["IdArticulo"];
+                    aux.ImagenUrl = (string)AccesoDatos.Lector["ImagenUrl"];
+
+                    imagenes.Add(aux);
+                }
+
+                return imagenes;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                AccesoDatos.cerrarConexion();
+            }
+
+        }
     }
-
 }
-

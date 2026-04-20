@@ -9,20 +9,27 @@ namespace Negocio
 {
     public class CategoriaNegocio
     {
-        public List<Categoria> listar()
+        private AccesoDatos AccesoDatos;
+
+        public CategoriaNegocio()
+        {
+            AccesoDatos = new AccesoDatos();
+        }   
+
+        public List<Categoria> Listar()
         {
             List<Categoria> lista = new List<Categoria>();
-            AccesoDatos datos = new AccesoDatos();
+
             try
             {
-                datos.setearConsulta("Select Id, Descripcion From CATEGORIAS");
-                datos.ejecutarLectura();
+                AccesoDatos.setearConsulta("Select Id, Descripcion From CATEGORIAS");
+                AccesoDatos.ejecutarLectura();
 
-                while (datos.Lector.Read())
+                while (AccesoDatos.Lector.Read())
                 {
                     Categoria aux = new Categoria();
-                    aux.Id = (int)datos.Lector["Id"];
-                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    aux.Id = (int)AccesoDatos.Lector["Id"];
+                    aux.Descripcion = (string)AccesoDatos.Lector["Descripcion"];
 
                     lista.Add(aux);
                 }
@@ -37,9 +44,37 @@ namespace Negocio
             }
             finally
             {
-                datos.cerrarConexion();
+                AccesoDatos.cerrarConexion();
             }
 
+        }
+
+        public Categoria ObtenerPorId(int id)
+        {
+            try
+            {
+                Categoria categoria = new Categoria();
+
+                AccesoDatos.setearConsulta("SELECT Id, Descripcion FROM CATEGORIAS WHERE Id = @id");
+                AccesoDatos.setearParametro("@id", id);
+                AccesoDatos.ejecutarLectura();
+                
+                while (AccesoDatos.Lector.Read())
+                {
+                    categoria.Id = (int)AccesoDatos.Lector["Id"];
+                    categoria.Descripcion = (string)AccesoDatos.Lector["Descripcion"];
+                }
+
+                return categoria;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                AccesoDatos.cerrarConexion();
+            }
         }
     }
 }
