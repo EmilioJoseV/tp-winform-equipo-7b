@@ -54,6 +54,11 @@ namespace Negocio
         {
             return true;
         }
+        public Marca ActualizarMarca(Marca marca)
+        { 
+            return new Marca();
+        
+        } 
 
     }
 }
