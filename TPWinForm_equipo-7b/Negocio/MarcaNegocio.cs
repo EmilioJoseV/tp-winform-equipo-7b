@@ -19,7 +19,7 @@ namespace Negocio
                 datos.setearConsulta("select Id, Descripcion From MARCAS");
                 datos.ejecutarLectura();
 
-                 while(datos.Lector.Read())
+                while (datos.Lector.Read())
                 {
                     Marca aux = new Marca();
                     aux.Id = (int)datos.Lector["Id"];
@@ -39,6 +39,15 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
+        }
+
+
+
+        public Marca CrearMarca(Marca marca)
+
+        {
+            return new Marca();
+
         }
 
     }
