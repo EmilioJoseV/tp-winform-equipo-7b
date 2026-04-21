@@ -16,11 +16,23 @@ namespace WinformApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            listaArticulos = negocio.Listar();
-            dgvArticulo.DataSource = listaArticulos;
-            //dgvArticulo.Columns["Imagen"].Visible = false;
-            //pcbxArticulos.Load(listaArticulos[0].Imagenes[0].ImagenUrl);
+            /* ArticuloNegocio negocio = new ArticuloNegocio();
+             try
+             {
+                 listaArticulos = negocio.Listar();
+                 dgvArticulo.DataSource = listaArticulos;
+                 //dgvArticulo.Columns["Imagen"].Visible = false;
+                 //pcbxArticulos.Load(listaArticulos[0].Imagenes[0].ImagenUrl);
+             }
+             catch (Exception ex)
+             {
+                 MessageBox.Show(ex.ToString());
+
+             }
+
+             */
+
+            cargar();
         }
 
         private void dgvArticulo_SelectionChanged(object sender, EventArgs e)
@@ -30,6 +42,26 @@ namespace WinformApp
                 Articulo seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
                 cargarImagen(seleccionado.Imagenes.Count > 0 ? seleccionado.Imagenes[0].ImagenUrl : null);
             }
+        }
+
+
+
+        private void cargar()
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            try
+            {
+                listaArticulos = negocio.Listar();
+                dgvArticulo.DataSource = listaArticulos;
+                //dgvArticulo.Columns["Imagen"].Visible = false;
+                //pcbxArticulos.Load(listaArticulos[0].Imagenes[0].ImagenUrl);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+
+            }
+
         }
         private void cargarImagen(string imagen)
         {
@@ -60,6 +92,8 @@ namespace WinformApp
         {
             frmAltaArticulo alta = new frmAltaArticulo();
             alta.ShowDialog();
+            cargar();
+
         }
 
         private void dgvArticulo_CellContentClick(object sender, DataGridViewCellEventArgs e)
