@@ -27,5 +27,6 @@ namespace Dominio
         [DisplayName("Categoría")]
         public Categoria Categoria { get; set; }
         public Marca Marca { get; set; }
+        public string ImagenUrl { get; set; }
     }
 }

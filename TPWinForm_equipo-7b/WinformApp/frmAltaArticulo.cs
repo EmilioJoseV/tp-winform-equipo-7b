@@ -33,6 +33,7 @@ namespace WinformApp
                 articulo.Codigo = txtCodigo.Text;
                 articulo.Nombre = txtNombre.Text;
                 articulo.Descripcion = txtDescripcion.Text;
+                articulo.ImagenUrl = txtImagenUrl.Text;
                 articulo.Marca = (Marca)cmbxMarca.SelectedItem;
                 articulo.Categoria = (Categoria)cmbxCategoria.SelectedItem;
                 articulo.Precio = float.Parse(txtPrecio.Text);
@@ -70,6 +71,25 @@ namespace WinformApp
             {
 
                 MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void txtImagenUrl_Leave(object sender, EventArgs e)
+        {
+            cargarImagen(txtImagenUrl.Text);
+        }
+
+        private void cargarImagen(string imagen)
+        {
+            try
+            {
+                pcbxImagen.Load(imagen);
+
+            }
+            catch (Exception ex)
+            {
+
+                pcbxImagen.Load("https://redthread.uoregon.edu/files/original/affd16fd5264cab9197da4cd1a996f820e601ee4.png");
             }
         }
     }

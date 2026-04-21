@@ -48,7 +48,6 @@
             this.dgvArticulo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvArticulo.Size = new System.Drawing.Size(650, 232);
             this.dgvArticulo.TabIndex = 0;
-            this.dgvArticulo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulo_CellContentClick);
             this.dgvArticulo.SelectionChanged += new System.EventHandler(this.dgvArticulo_SelectionChanged);
             // 
             // pcbxArticulos
@@ -59,7 +58,6 @@
             this.pcbxArticulos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbxArticulos.TabIndex = 1;
             this.pcbxArticulos.TabStop = false;
-            this.pcbxArticulos.Click += new System.EventHandler(this.pcbxArticulos_Click);
             // 
             // btnAgregar
             // 
@@ -97,7 +95,6 @@
             this.button3.TabIndex = 5;
             this.button3.Text = "Ver detalle";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // frmAdministrarArticulos
             // 
