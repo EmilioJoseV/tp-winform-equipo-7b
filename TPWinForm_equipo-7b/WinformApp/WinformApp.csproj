@@ -46,25 +46,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAdministrarCategorias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdministrarCategorias.Designer.cs">
+      <DependentUpon>frmAdministrarCategorias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAdministrarMarcas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdministrarMarcas.Designer.cs">
+      <DependentUpon>frmAdministrarMarcas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInicioAplicacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInicioAplicacion.Designer.cs">
+      <DependentUpon>frmInicioAplicacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAltaArticulo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmAltaArticulo.Designer.cs">
       <DependentUpon>frmAltaArticulo.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAppPrincipal.cs">
+    <Compile Include="frmAdministrarArticulos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAppPrincipal.Designer.cs">
-      <DependentUpon>frmAppPrincipal.cs</DependentUpon>
+    <Compile Include="frmAdministrarArticulos.Designer.cs">
+      <DependentUpon>frmAdministrarArticulos.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmInicioAplicacion.resx">
+      <DependentUpon>frmInicioAplicacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAltaArticulo.resx">
       <DependentUpon>frmAltaArticulo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAppPrincipal.resx">
-      <DependentUpon>frmAppPrincipal.cs</DependentUpon>
+    <EmbeddedResource Include="frmAdministrarArticulos.resx">
+      <DependentUpon>frmAdministrarArticulos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

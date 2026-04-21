@@ -6,10 +6,10 @@ using Negocio;
 
 namespace WinformApp
 {
-    public partial class frmAppPrincipal : Form
+    public partial class frmAdministrarArticulos : Form
     {
         private List<Articulo> listaArticulos;
-        public frmAppPrincipal()
+        public frmAdministrarArticulos()
         {
             InitializeComponent();
         }
@@ -97,6 +97,11 @@ namespace WinformApp
         }
 
         private void dgvArticulo_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
         {
 
         }
