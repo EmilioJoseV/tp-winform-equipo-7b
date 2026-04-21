@@ -61,5 +61,10 @@ namespace WinformApp
             frmAltaArticulo alta = new frmAltaArticulo();
             alta.ShowDialog();
         }
+
+        private void dgvArticulo_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
