@@ -1,6 +1,6 @@
 ﻿namespace WinformApp
 {
-    partial class frmAdministrarCategorias
+    partial class FrmAltaMarca
     {
         /// <summary>
         /// Required designer variable.
@@ -28,32 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnAgregar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Location = new System.Drawing.Point(12, 323);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(75, 23);
-            this.btnAgregar.TabIndex = 0;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            // 
-            // frmAdministrarCategorias
+            // FrmAltaMarca
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnAgregar);
-            this.Name = "frmAdministrarCategorias";
-            this.Text = "frmAdministrarCategorias";
+            this.Name = "FrmAltaMarca";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "FrmAltaMarca";
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnAgregar;
     }
 }

@@ -58,6 +58,18 @@
     <Compile Include="frmAdministrarMarcas.Designer.cs">
       <DependentUpon>frmAdministrarMarcas.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmAltaCategorias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAltaCategorias.Designer.cs">
+      <DependentUpon>FrmAltaCategorias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAltaMarca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAltaMarca.Designer.cs">
+      <DependentUpon>FrmAltaMarca.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmInicioAplicacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,8 +90,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAdministrarCategorias.resx">
+      <DependentUpon>frmAdministrarCategorias.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAdministrarMarcas.resx">
       <DependentUpon>frmAdministrarMarcas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAltaCategorias.resx">
+      <DependentUpon>FrmAltaCategorias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAltaMarca.resx">
+      <DependentUpon>FrmAltaMarca.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmInicioAplicacion.resx">
       <DependentUpon>frmInicioAplicacion.cs</DependentUpon>
