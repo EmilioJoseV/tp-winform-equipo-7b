@@ -78,6 +78,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAdministrarMarcas.resx">
+      <DependentUpon>frmAdministrarMarcas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmInicioAplicacion.resx">
       <DependentUpon>frmInicioAplicacion.cs</DependentUpon>
     </EmbeddedResource>

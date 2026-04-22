@@ -45,7 +45,7 @@ namespace WinformApp
         }
 
 
-
+       
         /*private void cargar()
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
