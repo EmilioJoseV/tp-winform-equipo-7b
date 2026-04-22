@@ -71,14 +71,17 @@ namespace WinformApp
                 listaArticulos = negocio.Listar();
                 dgvArticulo.DataSource = listaArticulos;
 
-                if (dgvArticulo.Columns["Imagenes"] != null)
-                    dgvArticulo.Columns["Imagenes"].Visible = false;
+                if (dgvArticulo.Columns["ImagenUrl"] != null)
+                    dgvArticulo.Columns["ImagenUrl"].Visible = false;
 
                 if (dgvArticulo.Columns["IdMarca"] != null)
                     dgvArticulo.Columns["IdMarca"].Visible = false;
 
                 if (dgvArticulo.Columns["IdCategoria"] != null)
                     dgvArticulo.Columns["IdCategoria"].Visible = false;
+
+                if (dgvArticulo.Columns["Id"] != null)
+                    dgvArticulo.Columns["Id"].Visible = false;
 
                 if (listaArticulos != null && listaArticulos.Count > 0)
                 {
@@ -126,8 +129,24 @@ namespace WinformApp
             cargar();
         }
 
-        
+        /*private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
 
-        
+            frmAltaArticulo modificar = new frmAltaArticulo(seleccionado);
+            modificar.ShowDialog();
+            cargar();
+        }*/
+
+        private void btnModificar_Click_1(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
+
+            frmAltaArticulo modificar = new frmAltaArticulo(seleccionado);
+            modificar.ShowDialog();
+            cargar();
+        }
     }
 }

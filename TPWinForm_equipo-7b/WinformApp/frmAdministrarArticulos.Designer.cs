@@ -31,7 +31,7 @@
             this.dgvArticulo = new System.Windows.Forms.DataGridView();
             this.pcbxArticulos = new System.Windows.Forms.PictureBox();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnModificar = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulo)).BeginInit();
@@ -69,14 +69,15 @@
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // button1
+            // btnModificar
             // 
-            this.button1.Location = new System.Drawing.Point(206, 296);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Modificar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnModificar.Location = new System.Drawing.Point(206, 296);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(75, 23);
+            this.btnModificar.TabIndex = 3;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click_1);
             // 
             // button2
             // 
@@ -103,7 +104,7 @@
             this.ClientSize = new System.Drawing.Size(1042, 405);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.pcbxArticulos);
             this.Controls.Add(this.dgvArticulo);
@@ -122,7 +123,7 @@
         private System.Windows.Forms.DataGridView dgvArticulo;
         private System.Windows.Forms.PictureBox pcbxArticulos;
         private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
     }

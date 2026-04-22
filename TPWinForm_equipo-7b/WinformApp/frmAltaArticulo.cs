@@ -14,9 +14,16 @@ namespace WinformApp
 {
     public partial class frmAltaArticulo : Form
     {
+        private Articulo articulo = null;
         public frmAltaArticulo()
         {
             InitializeComponent();
+        }
+
+        public frmAltaArticulo(Articulo articulo)
+        {
+            InitializeComponent();
+            this.articulo = articulo;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -66,6 +73,15 @@ namespace WinformApp
                 cmbxCategoria.DataSource = categoriaNegocio.Listar();
                 cmbxCategoria.ValueMember = "Id";
                 cmbxCategoria.DisplayMember = "Descripcion";
+
+                if(articulo != null)
+                {
+                    txtCodigo.Text = articulo.Codigo.ToString();
+                    txtNombre.Text = articulo.Nombre;
+                    txtDescripcion.Text = articulo.Descripcion;
+                    txtPrecio.Text = articulo.Precio.ToString();
+                    txtImagenUrl.Text = articulo.ImagenUrl;
+                }
             }
             catch (Exception ex)
             {
