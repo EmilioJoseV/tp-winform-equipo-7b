@@ -28,34 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.txtArticulo = new System.Windows.Forms.Label();
+            this.txtDescripcion = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.txtMarca = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // txtArticulo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Articulo";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.txtArticulo.AutoSize = true;
+            this.txtArticulo.Location = new System.Drawing.Point(31, 39);
+            this.txtArticulo.Name = "txtArticulo";
+            this.txtArticulo.Size = new System.Drawing.Size(42, 13);
+            this.txtArticulo.TabIndex = 0;
+            this.txtArticulo.Text = "Articulo";
+            this.txtArticulo.Click += new System.EventHandler(this.label1_Click);
             // 
-            // label2
+            // txtDescripcion
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(31, 101);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Descripcion";
+            this.txtDescripcion.AutoSize = true;
+            this.txtDescripcion.Location = new System.Drawing.Point(31, 101);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(63, 13);
+            this.txtDescripcion.TabIndex = 1;
+            this.txtDescripcion.Text = "Descripcion";
             // 
             // textBox1
             // 
@@ -78,14 +78,14 @@
             this.textBox3.Size = new System.Drawing.Size(100, 20);
             this.textBox3.TabIndex = 4;
             // 
-            // label3
+            // txtMarca
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(31, 72);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Marca";
+            this.txtMarca.AutoSize = true;
+            this.txtMarca.Location = new System.Drawing.Point(31, 72);
+            this.txtMarca.Name = "txtMarca";
+            this.txtMarca.Size = new System.Drawing.Size(37, 13);
+            this.txtMarca.TabIndex = 5;
+            this.txtMarca.Text = "Marca";
             // 
             // btnAceptar
             // 
@@ -114,12 +114,12 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtMarca);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtDescripcion);
+            this.Controls.Add(this.txtArticulo);
             this.Name = "FrmAltaMarca";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAltaMarca";
@@ -130,12 +130,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label txtArticulo;
+        private System.Windows.Forms.Label txtDescripcion;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label txtMarca;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
     }

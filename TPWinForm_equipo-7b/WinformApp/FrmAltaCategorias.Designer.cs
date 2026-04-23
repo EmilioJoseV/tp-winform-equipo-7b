@@ -1,4 +1,6 @@
-﻿namespace WinformApp
+﻿using System;
+
+namespace WinformApp
 {
     partial class FrmAltaCategorias
     {
@@ -28,33 +30,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.txtDescripcion = new System.Windows.Forms.Label();
+            this.txtCategoria = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnAceptar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // txtDescripcion
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Tag = "Articulo";
-            this.label1.Text = "Nombre";
+            this.txtDescripcion.AutoSize = true;
+            this.txtDescripcion.Location = new System.Drawing.Point(23, 40);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(63, 13);
+            this.txtDescripcion.TabIndex = 0;
+            this.txtDescripcion.Tag = "Articulo";
+            this.txtDescripcion.Text = "Descripcion";
             // 
-            // label2
+            // txtCategoria
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 108);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Categoria";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.txtCategoria.AutoSize = true;
+            this.txtCategoria.Location = new System.Drawing.Point(23, 108);
+            this.txtCategoria.Name = "txtCategoria";
+            this.txtCategoria.Size = new System.Drawing.Size(52, 13);
+            this.txtCategoria.TabIndex = 1;
+            this.txtCategoria.Text = "Categoria";
+            this.txtCategoria.Click += new System.EventHandler(this.label2_Click);
             // 
             // textBox1
             // 
@@ -70,16 +72,6 @@
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 3;
             // 
-            // btnAceptar
-            // 
-            this.btnAceptar.Location = new System.Drawing.Point(37, 223);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptar.TabIndex = 4;
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
-            this.btnAceptar.Click += new System.EventHandler(this.button1_Click);
-            // 
             // btnCancelar
             // 
             this.btnCancelar.Location = new System.Drawing.Point(222, 223);
@@ -90,17 +82,27 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Location = new System.Drawing.Point(58, 223);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
+            this.btnAceptar.TabIndex = 6;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click_1);
+            // 
             // FrmAltaCategorias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtCategoria);
+            this.Controls.Add(this.txtDescripcion);
             this.Name = "FrmAltaCategorias";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAltaCategorias";
@@ -109,13 +111,18 @@
 
         }
 
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label txtDescripcion;
+        private System.Windows.Forms.Label txtCategoria;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnAceptar;
     }
 }

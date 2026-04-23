@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Dominio;
+using Negocio;
 
 namespace WinformApp
 {
@@ -24,22 +26,45 @@ namespace WinformApp
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+      /*  private void button1_Click(object sender, EventArgs e)
         {
+            Categoria categoria = new Categoria();  
             try
             {
-
+               // categoria.
             }
             catch (Exception ex)
             {
 
-                MessageBox.Show();
+                MessageBox.Show(ex.ToString());
             }
-        }
+        }*/
          
         private void btnCancelar_Click(object sender, EventArgs e)
         {
                 Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAceptar_Click_1(object sender, EventArgs e)
+        {
+            Categoria categoria = new Categoria();
+            try
+            {
+                
+              categoria.Descripcion = txtDescripcion.Text;
+              
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+
         }
     }
 }
