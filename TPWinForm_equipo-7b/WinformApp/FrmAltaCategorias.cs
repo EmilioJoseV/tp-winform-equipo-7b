@@ -26,7 +26,20 @@ namespace WinformApp
 
         private void button1_Click(object sender, EventArgs e)
         {
+            try
+            {
 
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show();
+            }
+        }
+         
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+                Close();
         }
     }
 }
