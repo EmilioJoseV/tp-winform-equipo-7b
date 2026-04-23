@@ -26,7 +26,7 @@ namespace Negocio
             {
                 AccesoDatos.setearConsulta("SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, A.IdMarca, A.IdCategoria FROM ARTICULOS A" );
                 AccesoDatos.ejecutarLectura();
-                List<Articulo> articulos =  MapearConsultaArticulos(AccesoDatos.Lector);
+                List<Articulo> articulos = MapearConsultaArticulos(AccesoDatos.Lector);
                 AccesoDatos.cerrarConexion();
                 return articulos;
             }

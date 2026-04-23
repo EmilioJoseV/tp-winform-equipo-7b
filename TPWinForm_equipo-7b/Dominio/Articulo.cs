@@ -11,7 +11,10 @@ namespace Dominio
     
     public class Articulo
     {
-        public Articulo() { }
+        public Articulo()
+        {
+            Imagenes = new List<Imagen>();
+        }
         public int Id { get; set; }
         [DisplayName("Código")]
         public string Codigo { get; set; }

@@ -81,6 +81,14 @@ namespace WinformApp
                     txtDescripcion.Text = articulo.Descripcion;
                     txtPrecio.Text = articulo.Precio.ToString();
                     txtImagenUrl.Text = articulo.ImagenUrl;
+
+                    if (string.IsNullOrEmpty(articulo.ImagenUrl) && articulo.Imagenes != null && articulo.Imagenes.Count > 0)
+                    {
+                        articulo.ImagenUrl = articulo.Imagenes[0].ImagenUrl;
+                    }
+
+                    txtImagenUrl.Text = articulo.ImagenUrl;
+                    cargarImagen(articulo.ImagenUrl);
                 }
             }
             catch (Exception ex)
@@ -89,6 +97,8 @@ namespace WinformApp
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        
 
         private void txtImagenUrl_Leave(object sender, EventArgs e)
         {
@@ -99,12 +109,17 @@ namespace WinformApp
         {
             try
             {
-                pcbxImagen.Load(imagen);
-
+                if (!string.IsNullOrWhiteSpace(imagen))
+                {
+                    pcbxImagen.Load(imagen);
+                }
+                else
+                {
+                    pcbxImagen.Load("https://redthread.uoregon.edu/files/original/affd16fd5264cab9197da4cd1a996f820e601ee4.png");
+                }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
                 pcbxImagen.Load("https://redthread.uoregon.edu/files/original/affd16fd5264cab9197da4cd1a996f820e601ee4.png");
             }
         }
