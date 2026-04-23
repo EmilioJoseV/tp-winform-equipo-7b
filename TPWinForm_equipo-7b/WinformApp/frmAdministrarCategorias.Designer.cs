@@ -29,25 +29,40 @@
         private void InitializeComponent()
         {
             this.btnAgregar = new System.Windows.Forms.Button();
+            this.dgvCategorias = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCategorias)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(12, 323);
+            this.btnAgregar.Location = new System.Drawing.Point(12, 326);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 0;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
+            // dgvCategorias
+            // 
+            this.dgvCategorias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCategorias.Location = new System.Drawing.Point(23, 26);
+            this.dgvCategorias.Name = "dgvCategorias";
+            this.dgvCategorias.Size = new System.Drawing.Size(448, 236);
+            this.dgvCategorias.TabIndex = 1;
+            this.dgvCategorias.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCategorias_CellContentClick);
             // 
             // frmAdministrarCategorias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dgvCategorias);
             this.Controls.Add(this.btnAgregar);
             this.Name = "frmAdministrarCategorias";
             this.Text = "frmAdministrarCategorias";
+            this.Load += new System.EventHandler(this.frmAdministrarCategorias_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCategorias)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -55,5 +70,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.DataGridView dgvCategorias;
     }
 }

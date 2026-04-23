@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Dominio;
+using Negocio;
 
 namespace WinformApp
 {
@@ -16,10 +18,22 @@ namespace WinformApp
         {
             InitializeComponent();
         }
-
-        private void btnAgregar_Click(object sender, EventArgs e)
+        // ESTO  LO HAGO MAÑANA
+        private void frmAdministrarMarcas_Load(object sender, EventArgs e)
         {
 
+        }
+
+       
+
+        private void dgvMarcas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            FrmAltaMarca alta = new FrmAltaMarca(); 
+            alta.ShowDialog();
         }
     }
 }

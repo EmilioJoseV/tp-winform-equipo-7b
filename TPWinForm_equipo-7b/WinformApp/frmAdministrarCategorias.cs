@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Dominio;
+using Negocio;
 
 namespace WinformApp
 {
@@ -16,5 +18,24 @@ namespace WinformApp
         {
             InitializeComponent();
         }
+        // esto lo hago mañana en categorias y marcas
+        private void frmAdministrarCategorias_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvCategorias_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            FrmAltaCategorias alta = new FrmAltaCategorias();
+            alta.ShowDialog(); 
+        }
+
+
+       
     }
 }
