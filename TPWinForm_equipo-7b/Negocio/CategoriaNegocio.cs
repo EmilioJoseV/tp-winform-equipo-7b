@@ -15,7 +15,7 @@ namespace Negocio
         public CategoriaNegocio()
         {
             AccesoDatos = new AccesoDatos();
-        }   
+        }
 
         public List<Categoria> Listar()
         {
@@ -59,7 +59,7 @@ namespace Negocio
                 AccesoDatos.setearConsulta("SELECT Id, Descripcion FROM CATEGORIAS WHERE Id = @id");
                 AccesoDatos.setearParametro("@id", id);
                 AccesoDatos.ejecutarLectura();
-                
+
                 while (AccesoDatos.Lector.Read())
                 {
                     categoria.Id = (int)AccesoDatos.Lector["Id"];
@@ -76,6 +76,33 @@ namespace Negocio
             {
                 AccesoDatos.cerrarConexion();
             }
+        }
+        public void Agregar(Categoria nueva)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+
+                datos.setearConsulta("INSERT INTO CATEGORIAS (Descripcion) VALUES (@descripcion)");
+
+
+                datos.setearParametro("@descripcion", nueva.Descripcion);
+
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+
+
+
         }
     }
 }
