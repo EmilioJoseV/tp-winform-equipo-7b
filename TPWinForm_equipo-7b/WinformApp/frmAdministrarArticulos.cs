@@ -1,38 +1,30 @@
-﻿using System;
+﻿using Dominio;
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Dominio;
-using Negocio;
 
 namespace WinformApp
 {
     public partial class frmAdministrarArticulos : Form
     {
+        private ArticuloNegocio articuloNegocio;
         private List<Articulo> listaArticulos;
+
         public frmAdministrarArticulos()
         {
+            articuloNegocio = new ArticuloNegocio();
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            /*ArticuloNegocio negocio = new ArticuloNegocio();
-             try
-             {
-                 listaArticulos = negocio.Listar();
-                 dgvArticulo.DataSource = listaArticulos;
-                 //dgvArticulo.Columns["Imagen"].Visible = false;
-                 //pcbxArticulos.Load(listaArticulos[0].Imagenes[0].ImagenUrl);
-             }
-             catch (Exception ex)
-             {
-                 MessageBox.Show(ex.ToString());
-
-             }
-
-             */
-
-            cargar();
+            Cargar();
+            //Precargar opciones de filtrado
+            cboCampo.Items.Add("Codigo");
+            cboCampo.Items.Add("Precio");
+            cboCampo.Items.Add("Nombre");
+            cboCampo.Items.Add("Descripcion");
         }
 
         private void dgvArticulo_SelectionChanged(object sender, EventArgs e)
@@ -44,31 +36,13 @@ namespace WinformApp
             }
         }
 
-
-       
-        /*private void cargar()
+        private void Cargar()
         {
-            ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
-                listaArticulos = negocio.Listar();
-                dgvArticulo.DataSource = listaArticulos;
-                dgvArticulo.Columns["ImagenUrl"].Visible = false;
-                pcbxArticulos.Load(listaArticulos[0].Imagenes[0].ImagenUrl);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
+                if(listaArticulos == null)
+                    listaArticulos = articuloNegocio.Listar();
 
-            }
-
-        }*/
-        private void cargar()
-        {
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            try
-            {
-                listaArticulos = negocio.Listar();
                 dgvArticulo.DataSource = listaArticulos;
 
                 if (dgvArticulo.Columns["ImagenUrl"] != null)
@@ -100,6 +74,7 @@ namespace WinformApp
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
         private void cargarImagen(string imagen)
         {
             try
@@ -120,24 +95,13 @@ namespace WinformApp
             pcbxArticulos.Load("https://redthread.uoregon.edu/files/original/affd16fd5264cab9197da4cd1a996f820e601ee4.png");
         }
 
-        
-
+      
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmAltaArticulo alta = new frmAltaArticulo();
             alta.ShowDialog();
-            cargar();
+            Cargar();
         }
-
-        /*private void btnModificar_Click(object sender, EventArgs e)
-        {
-            Articulo seleccionado;
-            seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
-
-            frmAltaArticulo modificar = new frmAltaArticulo(seleccionado);
-            modificar.ShowDialog();
-            cargar();
-        }*/
 
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
@@ -146,7 +110,97 @@ namespace WinformApp
 
             frmAltaArticulo modificar = new frmAltaArticulo(seleccionado);
             modificar.ShowDialog();
-            cargar();
+            Cargar();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {         
+            try
+            {
+                if(cboCampo.SelectedIndex < 0)
+                {
+                   listaArticulos = articuloNegocio.Listar();
+                   Cargar();
+                   return;
+                }
+
+                if(cboCriterio.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Ingrese un criterio");
+                    return;
+                }
+
+                string campo = cboCampo.SelectedItem.ToString();
+                string criterio = cboCriterio.SelectedItem.ToString();
+                string filtro = cboFiltro.Text;
+
+                listaArticulos  = articuloNegocio.ListarConFiltros(campo, criterio, filtro);
+                Cargar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if( cboCampo.SelectedIndex < 0)
+            {
+                cboCriterio.Items.Clear();
+                cboFiltro.Text = "";
+                return;
+            }
+
+            string opcion = cboCampo.SelectedItem.ToString();
+
+            if (opcion == "Precio")
+            {
+                // Aca colocamos la lógica para filtrar por codigo
+                cboCriterio.Items.Clear();
+                cboCriterio.Items.Add("Mayor que");
+                cboCriterio.Items.Add("Menor que");
+                cboCriterio.Items.Add("Igual a");
+            }
+            else
+            {
+                cboCriterio.Items.Clear();
+                cboCriterio.Items.Add("Comienza con");
+                cboCriterio.Items.Add("Termina con");
+                cboCriterio.Items.Add("Contiene");
+            }
+        }
+        private void cboFiltro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboCriterio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+    
+        }
+
+        private void dgvArticulo_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnLimpiarFiltros_Click(object sender, EventArgs e)
+        {
+            cboCampo.SelectedIndex = -1;
+            cboCriterio.SelectedIndex = -1;
+            cboFiltro.Text = "";
+            Cargar();
         }
     }
 }

@@ -73,13 +73,10 @@ namespace Negocio
 
         public List<Articulo> ListarConFiltros(string campo, string criterio, string filtro)
         {
-            //Criterios para buscar: 
-
-            //Buscar por categoria
-            //Buscar por marca 
-            //Buscar por nombre
-            //Buscar por codigo 
-            //Buscar por descripcion 
+            if(campo == null || criterio == null || filtro == null)
+            {
+                return Listar();
+            }
 
             try {
                 string consulta = "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, A.IdMarca, A.IdCategoria FROM ARTICULOS A";
@@ -112,35 +109,21 @@ namespace Negocio
                                     break;
                             }
                             break;
-
-                        case "Marca":
-                            int idMarca;
-                            if (int.TryParse(filtro, out idMarca))
+                        case "Precio":
+                            where = $" WHERE A.{campo} ";
+                            switch (criterio)
                             {
-                                where = " WHERE A.IdMarca = @filtro";
-                            }
-                            else
-                            {
-                                consulta += " INNER JOIN MARCAS M ON M.Id = A.IdMarca";
-                                where = " WHERE M.Descripcion LIKE @filtro";
-                                filtro = "%" + filtro + "%";
-                            }
+                                case "Mayor que":
+                                    where += "> @filtro";
+                                    break;
+                                case "Menor que":
+                                    where += "< @filtro";
+                                    break;
+                                case "Igual a":
+                                    where += "= @filtro";
+                                    break;
+                            } 
                             break;
-
-                        case "Categoria":
-                            int idCategoria;
-                            if (int.TryParse(filtro, out idCategoria))
-                            {
-                                where = " WHERE A.IdCategoria = @filtro";
-                            }
-                            else
-                            {
-                                consulta += " INNER JOIN CATEGORIAS C ON C.Id = A.IdCategoria";
-                                where = " WHERE C.Descripcion LIKE @filtro";
-                                filtro = "%" + filtro + "%";
-                            }
-                            break;
-
                         default:
                             break;
                     }
@@ -153,7 +136,6 @@ namespace Negocio
                     AccesoDatos.setearParametro("@filtro", filtro);
 
                 AccesoDatos.ejecutarLectura();
-
                 List<Articulo> articulos = MapearConsultaArticulos(AccesoDatos.Lector);
 
                 return articulos;

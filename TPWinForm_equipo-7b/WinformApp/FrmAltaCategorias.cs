@@ -26,7 +26,7 @@ namespace WinformApp
 
         }
 
-      /*  private void button1_Click(object sender, EventArgs e)
+      /*  private void btnBuscar_Click(object sender, EventArgs e)
         {
             Categoria categoria = new Categoria();  
             try
