@@ -204,9 +204,20 @@ namespace Negocio
 
         public void Eliminar(Articulo articulo)
         {
-            AccesoDatos.setearConsulta("DELETE FROM ARTICULOS WHERE Id = @Id");
-            AccesoDatos.setearParametro("@Id", articulo.Id);
-            AccesoDatos.ejecutarAccion();
+            try
+            {
+                AccesoDatos.setearConsulta("DELETE FROM ARTICULOS WHERE Id = @Id");
+                AccesoDatos.setearParametro("@Id", articulo.Id);
+                AccesoDatos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                AccesoDatos.cerrarConexion();
+            }
         }
     }
 }

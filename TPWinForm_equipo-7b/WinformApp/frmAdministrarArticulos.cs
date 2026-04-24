@@ -19,8 +19,7 @@ namespace WinformApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Cargar();
-            //Precargar opciones de filtrado
+            CargarArticulosConFiltros();
             cboCampo.Items.Add("Codigo");
             cboCampo.Items.Add("Precio");
             cboCampo.Items.Add("Nombre");
@@ -32,17 +31,14 @@ namespace WinformApp
             if (dgvArticulo.CurrentRow != null)
             {
                 Articulo seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
-                cargarImagen(seleccionado.Imagenes.Count > 0 ? seleccionado.Imagenes[0].ImagenUrl : null);
+                RenderizarImagen(seleccionado.Imagenes.Count > 0 ? seleccionado.Imagenes[0].ImagenUrl : null);
             }
         }
 
-        private void Cargar()
+        private void RenderizarArticulos()
         {
             try
             {
-                if(listaArticulos == null)
-                    listaArticulos = articuloNegocio.Listar();
-
                 dgvArticulo.DataSource = listaArticulos;
 
                 if (dgvArticulo.Columns["ImagenUrl"] != null)
@@ -61,11 +57,11 @@ namespace WinformApp
                 {
                     if (listaArticulos[0].Imagenes != null && listaArticulos[0].Imagenes.Count > 0)
                     {
-                        cargarImagen(listaArticulos[0].Imagenes[0].ImagenUrl);
+                        RenderizarImagen(listaArticulos[0].Imagenes[0].ImagenUrl);
                     }
                     else
                     {
-                        cargarPlaceholder();
+                        RenderizarPlaceholder();
                     }
                 }
             }
@@ -75,22 +71,22 @@ namespace WinformApp
             }
         }
 
-        private void cargarImagen(string imagen)
+        private void RenderizarImagen(string imagen)
         {
             try
             {
                 if (!string.IsNullOrEmpty(imagen))
                     pcbxArticulos.Load(imagen);
                 else
-                    cargarPlaceholder();
+                    RenderizarPlaceholder();
             }
             catch (Exception)
             {
-                cargarPlaceholder();
+                RenderizarPlaceholder();
             }
         }
 
-        private void cargarPlaceholder()
+        private void RenderizarPlaceholder()
         {
             pcbxArticulos.Load("https://redthread.uoregon.edu/files/original/affd16fd5264cab9197da4cd1a996f820e601ee4.png");
         }
@@ -100,7 +96,7 @@ namespace WinformApp
         {
             frmAltaArticulo alta = new frmAltaArticulo();
             alta.ShowDialog();
-            Cargar();
+            CargarArticulosConFiltros();
         }
 
         private void btnModificar_Click_1(object sender, EventArgs e)
@@ -110,21 +106,26 @@ namespace WinformApp
 
             frmAltaArticulo modificar = new frmAltaArticulo(seleccionado);
             modificar.ShowDialog();
-            Cargar();
+            CargarArticulosConFiltros();
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {         
+            CargarArticulosConFiltros();
+        }
+
+        private void CargarArticulosConFiltros()
+        {
             try
             {
-                if(cboCampo.SelectedIndex < 0)
+                if (cboCampo.SelectedIndex < 0)
                 {
-                   listaArticulos = articuloNegocio.Listar();
-                   Cargar();
-                   return;
+                    listaArticulos = articuloNegocio.Listar();
+                    RenderizarArticulos();
+                    return;
                 }
 
-                if(cboCriterio.SelectedIndex < 0)
+                if (cboCriterio.SelectedIndex < 0)
                 {
                     MessageBox.Show("Ingrese un criterio");
                     return;
@@ -134,8 +135,8 @@ namespace WinformApp
                 string criterio = cboCriterio.SelectedItem.ToString();
                 string filtro = cboFiltro.Text;
 
-                listaArticulos  = articuloNegocio.Listar(campo, criterio, filtro);
-                Cargar();
+                listaArticulos = articuloNegocio.Listar(campo, criterio, filtro);
+                RenderizarArticulos();
             }
             catch (Exception ex)
             {
@@ -200,7 +201,32 @@ namespace WinformApp
             cboCampo.SelectedIndex = -1;
             cboCriterio.SelectedIndex = -1;
             cboFiltro.Text = "";
-            Cargar();
+            CargarArticulosConFiltros();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            // Pedir confirmacioon para eliminar
+            DialogResult dialogResult = MessageBox.Show("Seguro de eliminar...?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                Articulo articuloSeleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
+                articuloNegocio.Eliminar(articuloSeleccionado);
+                CargarArticulosConFiltros();
+            }
+        }
+
+        private void btnVerDetalle_Click(object sender, EventArgs e)
+        {
+            Articulo articuloSeleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
+            frmDetalleArticulo frmDetalleArticulo = new frmDetalleArticulo(articuloSeleccionado);
+            frmDetalleArticulo.ShowDialog();
+        }
+
+        private void pcbxArticulos_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -32,8 +32,8 @@
             this.pcbxArticulos = new System.Windows.Forms.PictureBox();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnVerDetalle = new System.Windows.Forms.Button();
             this.cboCriterio = new System.Windows.Forms.ComboBox();
             this.cboFiltro = new System.Windows.Forms.ComboBox();
             this.btnBuscar = new System.Windows.Forms.Button();
@@ -53,6 +53,7 @@
             this.dgvArticulo.Location = new System.Drawing.Point(26, 58);
             this.dgvArticulo.MultiSelect = false;
             this.dgvArticulo.Name = "dgvArticulo";
+            this.dgvArticulo.ReadOnly = true;
             this.dgvArticulo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvArticulo.Size = new System.Drawing.Size(632, 232);
             this.dgvArticulo.TabIndex = 0;
@@ -67,6 +68,7 @@
             this.pcbxArticulos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbxArticulos.TabIndex = 1;
             this.pcbxArticulos.TabStop = false;
+            this.pcbxArticulos.Click += new System.EventHandler(this.pcbxArticulos_Click);
             // 
             // btnAgregar
             // 
@@ -88,23 +90,25 @@
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click_1);
             // 
-            // button2
+            // btnEliminar
             // 
-            this.button2.Location = new System.Drawing.Point(269, 296);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Eliminar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnEliminar.Location = new System.Drawing.Point(269, 296);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminar.TabIndex = 4;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // button3
+            // btnVerDetalle
             // 
-            this.button3.Location = new System.Drawing.Point(107, 296);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Ver detalle";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnVerDetalle.Location = new System.Drawing.Point(107, 296);
+            this.btnVerDetalle.Name = "btnVerDetalle";
+            this.btnVerDetalle.Size = new System.Drawing.Size(75, 23);
+            this.btnVerDetalle.TabIndex = 5;
+            this.btnVerDetalle.Text = "Ver detalle";
+            this.btnVerDetalle.UseVisualStyleBackColor = true;
+            this.btnVerDetalle.Click += new System.EventHandler(this.btnVerDetalle_Click);
             // 
             // cboCriterio
             // 
@@ -199,8 +203,8 @@
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.cboFiltro);
             this.Controls.Add(this.cboCriterio);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnVerDetalle);
+            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.pcbxArticulos);
@@ -222,8 +226,8 @@
         private System.Windows.Forms.PictureBox pcbxArticulos;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnModificar;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnVerDetalle;
         private System.Windows.Forms.ComboBox cboCriterio;
         private System.Windows.Forms.ComboBox cboFiltro;
         private System.Windows.Forms.Button btnBuscar;
