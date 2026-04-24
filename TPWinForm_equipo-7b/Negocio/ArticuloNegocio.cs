@@ -71,7 +71,7 @@ namespace Negocio
             }
         }
 
-        public List<Articulo> ListarConFiltros(string campo, string criterio, string filtro)
+        public List<Articulo> Listar(string campo, string criterio, string filtro)
         {
             if(campo == null || criterio == null || filtro == null)
             {

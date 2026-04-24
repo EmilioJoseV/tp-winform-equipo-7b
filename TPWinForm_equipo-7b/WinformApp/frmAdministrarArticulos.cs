@@ -134,7 +134,7 @@ namespace WinformApp
                 string criterio = cboCriterio.SelectedItem.ToString();
                 string filtro = cboFiltro.Text;
 
-                listaArticulos  = articuloNegocio.ListarConFiltros(campo, criterio, filtro);
+                listaArticulos  = articuloNegocio.Listar(campo, criterio, filtro);
                 Cargar();
             }
             catch (Exception ex)
