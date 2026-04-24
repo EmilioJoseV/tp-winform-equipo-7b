@@ -18,13 +18,13 @@ namespace WinformApp
         {
             InitializeComponent();
         }
-        // ESTO  LO HAGO MAÑANA
+
         private void frmAdministrarMarcas_Load(object sender, EventArgs e)
         {
-
+            cargar();
         }
 
-       
+
 
         private void dgvMarcas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -32,8 +32,42 @@ namespace WinformApp
         }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            FrmAltaMarca alta = new FrmAltaMarca(); 
+            FrmAltaMarca alta = new FrmAltaMarca();
             alta.ShowDialog();
+        }
+        private void cargar()
+        {
+            MarcaNegocio negocio = new MarcaNegocio();
+            try
+            {
+                List<Marca> ListaMarcas = negocio.Listar();
+                dgvMarcas.DataSource = ListaMarcas;
+
+                if (dgvMarcas.Columns["ImagenUrl"] != null)
+                    dgvMarcas.Columns["ImagenUrl"].Visible = false;
+
+                if (dgvMarcas.Columns["IdMarca"] != null)
+                    dgvMarcas.Columns["IdMarca"].Visible = false;
+
+                if (dgvMarcas.Columns["IdCategoria"] != null)
+                    dgvMarcas.Columns["IdCategoria"].Visible = false;
+
+
+
+                if (dgvMarcas.Columns["Id"] != null)
+                    dgvMarcas.Columns["Id"].Visible = false;
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+
+
+
         }
     }
 }
