@@ -164,6 +164,8 @@ namespace Negocio
                 AccesoDatos.setearParametro("@IdCategoria", articulo.Categoria.Id);
                 AccesoDatos.setearParametro("@Precio", articulo.Precio);
 
+                //TODO Aca no olvidarnos que una vez creado el articulo tenemos que crear las imagenes asociadas al ID del articulo.
+                //TODO Hacerlo aca.
                 AccesoDatos.ejecutarAccion();
             }
             catch (Exception ex)

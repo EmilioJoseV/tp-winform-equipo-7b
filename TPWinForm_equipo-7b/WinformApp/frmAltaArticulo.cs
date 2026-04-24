@@ -15,6 +15,8 @@ namespace WinformApp
     public partial class frmAltaArticulo : Form
     {
         private Articulo articulo = null;
+        private List<String> urlImagenes = new List<String>();
+
         public frmAltaArticulo()
         {
             InitializeComponent();
