@@ -18,9 +18,10 @@ namespace WinformApp
         {
             InitializeComponent();
         }
-        // esto lo hago mañana en categorias y marcas
+        
         private void frmAdministrarCategorias_Load(object sender, EventArgs e)
         {
+            Cargar();
 
         }
 
@@ -36,6 +37,40 @@ namespace WinformApp
         }
 
 
-       
+        private void Cargar()
+        {
+            CategoriaNegocio negocio = new CategoriaNegocio();
+            try
+            {
+                List<Categoria> ListaCategorias = negocio.Listar();
+                dgvCategorias.DataSource = ListaCategorias;
+
+                if (dgvCategorias.Columns["ImagenUrl"] != null)
+                    dgvCategorias.Columns["ImagenUrl"].Visible = false;
+
+                if (dgvCategorias.Columns["IdMarca"] != null)
+                    dgvCategorias.Columns["IdMarca"].Visible = false;
+
+                if (dgvCategorias.Columns["IdCategoria"] != null)
+                    dgvCategorias.Columns["IdCategoria"].Visible = false;
+
+
+
+                if (dgvCategorias.Columns["Id"] != null)
+                    dgvCategorias.Columns["Id"].Visible = false;
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+
+
+
     }
 }

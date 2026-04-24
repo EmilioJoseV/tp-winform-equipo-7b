@@ -53,11 +53,19 @@ namespace WinformApp
         private void btnAceptar_Click_1(object sender, EventArgs e)
         {
             Categoria categoria = new Categoria();
+            CategoriaNegocio negocio = new CategoriaNegocio();
             try
             {
                 
-              categoria.Descripcion = txtDescripcion.Text;
-              
+             // categoria.Descripcion = textBox1.Text;
+                categoria.Descripcion = textBox1.Text;
+                negocio.Agregar(categoria);
+                MessageBox.Show("Agregado Exitosamente");
+
+                categoria.Descripcion=txtDescripcion.Text;
+
+
+
             }
             catch (Exception ex)
             {

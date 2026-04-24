@@ -25,11 +25,15 @@ namespace WinformApp
 
         private void button2_Click(object sender, EventArgs e)
         {
+            frmAdministrarMarcas frmAdministrarMarcas = new frmAdministrarMarcas();
+            frmAdministrarMarcas.ShowDialog();
 
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            frmAdministrarCategorias frmAdministrarCategorias = new frmAdministrarCategorias();
+            frmAdministrarCategorias.ShowDialog();
 
         }
 

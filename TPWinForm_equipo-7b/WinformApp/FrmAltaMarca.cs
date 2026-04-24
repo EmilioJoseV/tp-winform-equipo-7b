@@ -33,8 +33,12 @@ namespace WinformApp
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             Marca marca = new Marca();
+            MarcaNegocio negocio = new MarcaNegocio();
             try
             {
+               marca.Descripcion=textBox2.Text;
+               negocio.Agregar(marca);
+               MessageBox.Show("Agregado Exitosamente");
 
             }
             catch (Exception ex)

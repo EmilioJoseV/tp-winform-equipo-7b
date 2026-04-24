@@ -77,13 +77,13 @@ namespace Negocio
             }
         }
 
-        public Marca CrearMarca(Marca marca)
+       /* public Marca CrearMarca(Marca marca)
 
         {
             return new Marca();
 
         }
-
+        */
     
 
         public void EliminarMarca(Marca marca) 
@@ -98,6 +98,39 @@ namespace Negocio
 
             return new List<Marca>();
         }
+
+
+        public void Agregar (Marca nueva)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+
+                datos.setearConsulta("INSERT INTO MARCAS (Descripcion) VALUES (@descripcion)");
+
+
+                datos.setearParametro("@descripcion", nueva.Descripcion);
+
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+           
+
+        
+        
+        
+   
     }
 }
 
