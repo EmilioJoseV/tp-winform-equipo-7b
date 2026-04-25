@@ -14,12 +14,13 @@ namespace WinformApp
         public frmAdministrarArticulos()
         {
             articuloNegocio = new ArticuloNegocio();
+            listaArticulos = articuloNegocio.Listar();
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            CargarArticulosConFiltros();
+            CargarArticulos(listaArticulos);
             cboCampo.Items.Add("Codigo");
             cboCampo.Items.Add("Precio");
             cboCampo.Items.Add("Nombre");
@@ -31,15 +32,16 @@ namespace WinformApp
             if (dgvArticulo.CurrentRow != null)
             {
                 Articulo seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
-                RenderizarImagen(seleccionado.Imagenes.Count > 0 ? seleccionado.Imagenes[0].ImagenUrl : null);
+                CargarImagen(seleccionado.Imagenes.Count > 0 ? seleccionado.Imagenes[0].ImagenUrl : null);
             }
         }
 
-        private void RenderizarArticulos()
+        private void CargarArticulos(List<Articulo> articulos)
         {
             try
             {
-                dgvArticulo.DataSource = listaArticulos;
+                dgvArticulo.DataSource = null;
+                dgvArticulo.DataSource = articulos;
 
                 if (dgvArticulo.Columns["ImagenUrl"] != null)
                     dgvArticulo.Columns["ImagenUrl"].Visible = false;
@@ -57,11 +59,11 @@ namespace WinformApp
                 {
                     if (listaArticulos[0].Imagenes != null && listaArticulos[0].Imagenes.Count > 0)
                     {
-                        RenderizarImagen(listaArticulos[0].Imagenes[0].ImagenUrl);
+                        CargarImagen(listaArticulos[0].Imagenes[0].ImagenUrl);
                     }
                     else
                     {
-                        RenderizarPlaceholder();
+                        CargarPlaceholder();
                     }
                 }
             }
@@ -71,22 +73,22 @@ namespace WinformApp
             }
         }
 
-        private void RenderizarImagen(string imagen)
+        private void CargarImagen(string imagen)
         {
             try
             {
                 if (!string.IsNullOrEmpty(imagen))
                     pcbxArticulos.Load(imagen);
                 else
-                    RenderizarPlaceholder();
+                    CargarPlaceholder();
             }
             catch (Exception)
             {
-                RenderizarPlaceholder();
+                CargarPlaceholder();
             }
         }
 
-        private void RenderizarPlaceholder()
+        private void CargarPlaceholder()
         {
             pcbxArticulos.Load("https://redthread.uoregon.edu/files/original/affd16fd5264cab9197da4cd1a996f820e601ee4.png");
         }
@@ -120,8 +122,7 @@ namespace WinformApp
             {
                 if (cboCampo.SelectedIndex < 0)
                 {
-                    listaArticulos = articuloNegocio.Listar();
-                    RenderizarArticulos();
+                    CargarArticulos(articuloNegocio.Listar());
                     return;
                 }
 
@@ -135,8 +136,7 @@ namespace WinformApp
                 string criterio = cboCriterio.SelectedItem.ToString();
                 string filtro = cboFiltro.Text;
 
-                listaArticulos = articuloNegocio.Listar(campo, criterio, filtro);
-                RenderizarArticulos();
+                CargarArticulos(articuloNegocio.Listar(campo, criterio, filtro));
             }
             catch (Exception ex)
             {
@@ -227,6 +227,30 @@ namespace WinformApp
         private void pcbxArticulos_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cboFiltroRapido_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtFiltroRapido_TextChanged(object sender, EventArgs e)
+        {
+            List<Articulo> articulosFiltroRapido = new List<Articulo>();
+
+            if (txtFiltroRapido.Text.Length >= 3)
+            {
+                articulosFiltroRapido = listaArticulos.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltroRapido.Text.ToUpper())
+                || x.Codigo.ToUpper().Contains(txtFiltroRapido.Text.ToUpper())
+                || x.Descripcion.ToUpper().Contains(txtFiltroRapido.Text.ToUpper())
+                || x.Marca.Descripcion.ToUpper().Contains(txtFiltroRapido.Text.ToUpper())
+                || x.Categoria.Descripcion.ToUpper().Contains(txtFiltroRapido.Text.ToUpper()));
+
+                CargarArticulos(articulosFiltroRapido);
+            } else
+            {
+                CargarArticulos(listaArticulos);
+            }
         }
     }
 }

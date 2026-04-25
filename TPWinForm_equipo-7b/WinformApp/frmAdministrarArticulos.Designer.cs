@@ -42,6 +42,8 @@
             this.lblFiltro = new System.Windows.Forms.Label();
             this.cboCampo = new System.Windows.Forms.ComboBox();
             this.btnLimpiarFiltros = new System.Windows.Forms.Button();
+            this.txtFiltroRapido = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbxArticulos)).BeginInit();
             this.SuspendLayout();
@@ -190,11 +192,30 @@
             this.btnLimpiarFiltros.UseVisualStyleBackColor = true;
             this.btnLimpiarFiltros.Click += new System.EventHandler(this.btnLimpiarFiltros_Click);
             // 
+            // txtFiltroRapido
+            // 
+            this.txtFiltroRapido.Location = new System.Drawing.Point(90, 32);
+            this.txtFiltroRapido.Name = "txtFiltroRapido";
+            this.txtFiltroRapido.Size = new System.Drawing.Size(237, 20);
+            this.txtFiltroRapido.TabIndex = 16;
+            this.txtFiltroRapido.TextChanged += new System.EventHandler(this.txtFiltroRapido_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(23, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 13);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Filtro rapido";
+            // 
             // frmAdministrarArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1042, 405);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtFiltroRapido);
             this.Controls.Add(this.btnLimpiarFiltros);
             this.Controls.Add(this.cboCampo);
             this.Controls.Add(this.lblFiltro);
@@ -236,6 +257,8 @@
         private System.Windows.Forms.Label lblFiltro;
         private System.Windows.Forms.ComboBox cboCampo;
         private System.Windows.Forms.Button btnLimpiarFiltros;
+        private System.Windows.Forms.TextBox txtFiltroRapido;
+        private System.Windows.Forms.Label label1;
     }
 }
 
