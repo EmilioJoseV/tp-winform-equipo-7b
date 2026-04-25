@@ -15,10 +15,38 @@ namespace WinformApp
 {
     public partial class FrmAltaMarca : Form
     {
+        private Marca marca = null;
+
+
         public FrmAltaMarca()
         {
             InitializeComponent();
         }
+
+
+        public FrmAltaMarca(Marca marca)
+        {
+            InitializeComponent();
+            this.marca = marca;
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -36,9 +64,9 @@ namespace WinformApp
             MarcaNegocio negocio = new MarcaNegocio();
             try
             {
-               marca.Descripcion=textBox2.Text;
-               negocio.Agregar(marca);
-               MessageBox.Show("Agregado Exitosamente");
+                marca.Descripcion = textBox2.Text;
+                negocio.Agregar(marca);
+                MessageBox.Show("Agregado Exitosamente");
 
             }
             catch (Exception ex)
@@ -46,6 +74,12 @@ namespace WinformApp
 
                 MessageBox.Show(ex.ToString());
             }
+
         }
     }
 }
+
+
+
+    
+

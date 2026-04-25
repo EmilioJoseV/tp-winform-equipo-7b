@@ -20,8 +20,14 @@ namespace WinformApp
         }
 
         private void frmAdministrarMarcas_Load(object sender, EventArgs e)
+
         {
             cargar();
+            
+          
+         
+            
+         
         }
 
 
@@ -96,6 +102,14 @@ namespace WinformApp
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
+            // le paso por parametro el objeto que quiero modificar
+            Marca seleccionado;
+            seleccionado = (Marca)dgvMarcas.CurrentRow.DataBoundItem;
+            //  se lo paso por parametro al constructor de la clase
+            
+            FrmAltaMarca modificar = new FrmAltaMarca(seleccionado);
+            modificar.ShowDialog();
+            cargar();
 
         }
     }
