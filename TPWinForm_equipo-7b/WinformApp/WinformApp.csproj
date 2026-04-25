@@ -82,11 +82,11 @@
     <Compile Include="frmInicioAplicacion.Designer.cs">
       <DependentUpon>frmInicioAplicacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAltaArticulo.cs">
+    <Compile Include="frmAltaModificacionArticulo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAltaArticulo.Designer.cs">
-      <DependentUpon>frmAltaArticulo.cs</DependentUpon>
+    <Compile Include="frmAltaModificacionArticulo.Designer.cs">
+      <DependentUpon>frmAltaModificacionArticulo.cs</DependentUpon>
     </Compile>
     <Compile Include="frmAdministrarArticulos.cs">
       <SubType>Form</SubType>
@@ -114,8 +114,8 @@
     <EmbeddedResource Include="frmInicioAplicacion.resx">
       <DependentUpon>frmInicioAplicacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAltaArticulo.resx">
-      <DependentUpon>frmAltaArticulo.cs</DependentUpon>
+    <EmbeddedResource Include="frmAltaModificacionArticulo.resx">
+      <DependentUpon>frmAltaModificacionArticulo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAdministrarArticulos.resx">
       <DependentUpon>frmAdministrarArticulos.cs</DependentUpon>

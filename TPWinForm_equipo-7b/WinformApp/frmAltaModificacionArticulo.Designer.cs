@@ -1,6 +1,6 @@
 ﻿namespace WinformApp
 {
-    partial class frmAltaArticulo
+    partial class frmAltaModificacionArticulo
     {
         /// <summary>
         /// Required designer variable.
@@ -35,7 +35,7 @@
             this.lblCategoria = new System.Windows.Forms.Label();
             this.lblImagUrl = new System.Windows.Forms.Label();
             this.lblPrecio = new System.Windows.Forms.Label();
-            this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
@@ -50,6 +50,7 @@
             this.listboxImagenesUrl = new System.Windows.Forms.ListBox();
             this.btnQuitarImagen = new System.Windows.Forms.Button();
             this.btnVistaPrevia = new System.Windows.Forms.Button();
+            this.btnVistaPrev = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pcbxImagen)).BeginInit();
             this.SuspendLayout();
             // 
@@ -116,15 +117,15 @@
             this.lblPrecio.TabIndex = 6;
             this.lblPrecio.Text = "Precio:";
             // 
-            // btnAgregar
+            // btnAceptar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(582, 557);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(75, 23);
-            this.btnAgregar.TabIndex = 7;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            this.btnAceptar.Location = new System.Drawing.Point(582, 557);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
+            this.btnAceptar.TabIndex = 7;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnCancelar
             // 
@@ -201,7 +202,7 @@
             // 
             // btnAgregarImagen
             // 
-            this.btnAgregarImagen.Location = new System.Drawing.Point(506, 284);
+            this.btnAgregarImagen.Location = new System.Drawing.Point(582, 284);
             this.btnAgregarImagen.Name = "btnAgregarImagen";
             this.btnAgregarImagen.Size = new System.Drawing.Size(108, 24);
             this.btnAgregarImagen.TabIndex = 19;
@@ -245,11 +246,22 @@
             this.btnVistaPrevia.Text = "Ver imagen";
             this.btnVistaPrevia.UseVisualStyleBackColor = true;
             // 
-            // frmAltaArticulo
+            // btnVistaPrev
+            // 
+            this.btnVistaPrev.Location = new System.Drawing.Point(491, 284);
+            this.btnVistaPrev.Name = "btnVistaPrev";
+            this.btnVistaPrev.Size = new System.Drawing.Size(85, 24);
+            this.btnVistaPrev.TabIndex = 24;
+            this.btnVistaPrev.Text = "Vista previa";
+            this.btnVistaPrev.UseVisualStyleBackColor = true;
+            this.btnVistaPrev.Click += new System.EventHandler(this.btnVistaPrev_Click);
+            // 
+            // frmAltaModificacionArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1188, 625);
+            this.Controls.Add(this.btnVistaPrev);
             this.Controls.Add(this.btnVistaPrevia);
             this.Controls.Add(this.btnQuitarImagen);
             this.Controls.Add(this.listboxImagenesUrl);
@@ -264,7 +276,7 @@
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnAgregar);
+            this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.lblPrecio);
             this.Controls.Add(this.lblMarca);
             this.Controls.Add(this.lblCategoria);
@@ -272,9 +284,9 @@
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.lblCodigo);
-            this.Name = "frmAltaArticulo";
+            this.Name = "frmAltaModificacionArticulo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Nuevo Articulo";
+            this.Text = "Alta / Modificacion de articulo";
             this.Load += new System.EventHandler(this.frmAltaArticulo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pcbxImagen)).EndInit();
             this.ResumeLayout(false);
@@ -291,7 +303,7 @@
         private System.Windows.Forms.Label lblCategoria;
         private System.Windows.Forms.Label lblImagUrl;
         private System.Windows.Forms.Label lblPrecio;
-        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.TextBox txtNombre;
@@ -306,5 +318,6 @@
         private System.Windows.Forms.ListBox listboxImagenesUrl;
         private System.Windows.Forms.Button btnQuitarImagen;
         private System.Windows.Forms.Button btnVistaPrevia;
+        private System.Windows.Forms.Button btnVistaPrev;
     }
 }

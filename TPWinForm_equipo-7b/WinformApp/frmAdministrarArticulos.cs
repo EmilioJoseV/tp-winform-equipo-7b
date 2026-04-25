@@ -96,17 +96,16 @@ namespace WinformApp
       
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            frmAltaArticulo alta = new frmAltaArticulo();
+            frmAltaModificacionArticulo alta = new frmAltaModificacionArticulo();
             alta.ShowDialog();
             CargarArticulosConFiltros();
         }
 
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
-            Articulo seleccionado;
-            seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
-
-            frmAltaArticulo modificar = new frmAltaArticulo(seleccionado);
+            ValidarSeleccionDeArticulo();
+            Articulo seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
+            frmAltaModificacionArticulo modificar = new frmAltaModificacionArticulo(seleccionado);
             modificar.ShowDialog();
             CargarArticulosConFiltros();
         }
@@ -220,14 +219,18 @@ namespace WinformApp
 
         private void btnVerDetalle_Click(object sender, EventArgs e)
         {
-            if(dgvArticulo.CurrentRow == null)
-            {
-                MessageBox.Show("Seleccione un articulo para ver su detalle"); return;
-            }
-
+            ValidarSeleccionDeArticulo();
             Articulo articuloSeleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
             frmDetalleArticulo frmDetalleArticulo = new frmDetalleArticulo(articuloSeleccionado);
             frmDetalleArticulo.ShowDialog();
+        }
+
+        private void ValidarSeleccionDeArticulo()
+        {
+            if (dgvArticulo.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccione un articulo para ver su detalle"); return;
+            }
         }
 
         private void pcbxArticulos_Click(object sender, EventArgs e)

@@ -1,28 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Dominio;
+﻿using Dominio;
 using Negocio;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace WinformApp
 {
-    public partial class frmAltaArticulo : Form
+    public partial class frmAltaModificacionArticulo : Form
     {
         private Articulo articulo = null;
         private ArticuloNegocio articuloNegocio;
 
-        public frmAltaArticulo()
+        public frmAltaModificacionArticulo()
         {
             InitializeComponent();
         }
 
-        public frmAltaArticulo(Articulo articulo)
+        public frmAltaModificacionArticulo(Articulo articulo)
         {
             InitializeComponent();
             this.articulo = articulo;
@@ -33,7 +27,7 @@ namespace WinformApp
             Close();
         }
 
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private void btnAceptar_Click(object sender, EventArgs e)
         {
             Articulo articulo = new Articulo();
 
@@ -42,7 +36,6 @@ namespace WinformApp
                 articulo.Codigo = txtCodigo.Text;
                 articulo.Nombre = txtNombre.Text;
                 articulo.Descripcion = txtDescripcion.Text;
-                articulo.ImagenUrl = txtImagenUrl.Text;
                 articulo.Marca = (Marca)cmbxMarca.SelectedItem;
                 articulo.Categoria = (Categoria)cmbxCategoria.SelectedItem;
                 articulo.Precio = float.Parse(txtPrecio.Text);
@@ -55,7 +48,7 @@ namespace WinformApp
                 articulo.Imagenes = imagenes;
 
                 articuloNegocio.Crear(articulo);
-                
+
                 MessageBox.Show("Agregado Exitosamente");
                 Close();
 
@@ -75,30 +68,30 @@ namespace WinformApp
 
             try
             {
-                cmbxMarca.DataSource = marcaNegocio.Listar();
-                cmbxMarca.ValueMember = "Id";
-                cmbxMarca.DisplayMember = "Descripcion";
-
-                cmbxCategoria.DataSource = categoriaNegocio.Listar();
-                cmbxCategoria.ValueMember = "Id";
-                cmbxCategoria.DisplayMember = "Descripcion";
-
-                //Si es modificacion de articulo, cargamos los datos
-                if (articulo != null)
+                if (this.articulo == null)
                 {
+                    //Crear articulo
+                    cmbxMarca.DataSource = marcaNegocio.Listar();
+                    cmbxMarca.ValueMember = "Id";
+                    cmbxMarca.DisplayMember = "Descripcion";
+
+                    cmbxCategoria.DataSource = categoriaNegocio.Listar();
+                    cmbxCategoria.ValueMember = "Id";
+                    cmbxCategoria.DisplayMember = "Descripcion";
+                }
+                else
+                {
+                    //Actualizar articulo
                     txtCodigo.Text = articulo.Codigo.ToString();
                     txtNombre.Text = articulo.Nombre;
                     txtDescripcion.Text = articulo.Descripcion;
                     txtPrecio.Text = articulo.Precio.ToString();
-                    txtImagenUrl.Text = articulo.ImagenUrl;
 
-                    if (string.IsNullOrEmpty(articulo.ImagenUrl) && articulo.Imagenes != null && articulo.Imagenes.Count > 0)
+                    if (articulo.Imagenes != null && articulo.Imagenes.Count > 0)
                     {
-                        articulo.ImagenUrl = articulo.Imagenes[0].ImagenUrl;
+                        cargarImagen(articulo.Imagenes[0].ImagenUrl);
                     }
 
-                    txtImagenUrl.Text = articulo.ImagenUrl;
-                    cargarImagen(articulo.ImagenUrl);
                 }
             }
             catch (Exception ex)
@@ -108,11 +101,8 @@ namespace WinformApp
             }
         }
 
-        
-
         private void txtImagenUrl_Leave(object sender, EventArgs e)
         {
-            cargarImagen(txtImagenUrl.Text);
         }
 
         private void cargarImagen(string imagen)
@@ -151,6 +141,11 @@ namespace WinformApp
         private void CargarPlaceHolderImagen()
         {
             pcbxImagen.Load("https://redthread.uoregon.edu/files/original/affd16fd5264cab9197da4cd1a996f820e601ee4.png");
+        }
+
+        private void btnVistaPrev_Click(object sender, EventArgs e)
+        {
+            cargarImagen(txtImagenUrl.Text);
         }
     }
 }
