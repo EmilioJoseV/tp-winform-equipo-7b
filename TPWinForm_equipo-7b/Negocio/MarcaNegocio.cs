@@ -91,7 +91,7 @@ namespace Negocio
             try
             {
 
-                AccesoDatos.setearConsulta("DELETE FROM MARCA WHERE Id = @Id");
+                AccesoDatos.setearConsulta("DELETE FROM MARCAS WHERE Id = @Id");
                 AccesoDatos.setearParametro("@Id", marca.Id);
                 AccesoDatos.ejecutarAccion();
             }
