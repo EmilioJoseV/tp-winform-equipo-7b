@@ -207,6 +207,7 @@
             this.btnAgregarImagen.TabIndex = 19;
             this.btnAgregarImagen.Text = "Agregar imagen";
             this.btnAgregarImagen.UseVisualStyleBackColor = true;
+            this.btnAgregarImagen.Click += new System.EventHandler(this.btnAgregarImagen_Click);
             // 
             // lblImagenesCargadas
             // 
@@ -224,6 +225,7 @@
             this.listboxImagenesUrl.Name = "listboxImagenesUrl";
             this.listboxImagenesUrl.Size = new System.Drawing.Size(451, 147);
             this.listboxImagenesUrl.TabIndex = 21;
+            this.listboxImagenesUrl.SelectedIndexChanged += new System.EventHandler(this.listboxImagenesUrl_SelectedIndexChanged);
             // 
             // btnQuitarImagen
             // 

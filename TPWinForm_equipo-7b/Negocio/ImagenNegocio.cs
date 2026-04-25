@@ -55,6 +55,25 @@ namespace Negocio
 
         }
 
+        public void Agregar(Imagen nuevo)
+        {
+            try
+            {
+                AccesoDatos.setearConsulta("INSERT INTO IMAGENES (IdArticulo, ImagenUrl) VALUES (@IdArticulo, @ImagenUrl)");
+                AccesoDatos.setearParametro("@IdArticulo", nuevo.IdArticulo);
+                AccesoDatos.setearParametro("@ImagenUrl", nuevo.ImagenUrl);
+                AccesoDatos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                AccesoDatos.cerrarConexion();
+            }
+        }
+
         public List<Imagen> ObtenerImagenesPorArticuloId(int id)
         {
             try

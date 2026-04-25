@@ -15,7 +15,7 @@ namespace WinformApp
     public partial class frmAltaArticulo : Form
     {
         private Articulo articulo = null;
-        private List<String> urlImagenes = new List<String>();
+        private ArticuloNegocio articuloNegocio;
 
         public frmAltaArticulo()
         {
@@ -36,7 +36,7 @@ namespace WinformApp
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             Articulo articulo = new Articulo();
-            ArticuloNegocio negocio = new ArticuloNegocio();
+
             try
             {
                 articulo.Codigo = txtCodigo.Text;
@@ -47,8 +47,15 @@ namespace WinformApp
                 articulo.Categoria = (Categoria)cmbxCategoria.SelectedItem;
                 articulo.Precio = float.Parse(txtPrecio.Text);
 
+                List<Imagen> imagenes = new List<Imagen>();
+                foreach (var item in listboxImagenesUrl.Items)
+                {
+                    imagenes.Add(new Imagen { ImagenUrl = item.ToString() });
+                }
+                articulo.Imagenes = imagenes;
 
-                negocio.Crear(articulo);
+                articuloNegocio.Crear(articulo);
+                
                 MessageBox.Show("Agregado Exitosamente");
                 Close();
 
@@ -76,7 +83,8 @@ namespace WinformApp
                 cmbxCategoria.ValueMember = "Id";
                 cmbxCategoria.DisplayMember = "Descripcion";
 
-                if(articulo != null)
+                //Si es modificacion de articulo, cargamos los datos
+                if (articulo != null)
                 {
                     txtCodigo.Text = articulo.Codigo.ToString();
                     txtNombre.Text = articulo.Nombre;
@@ -117,13 +125,32 @@ namespace WinformApp
                 }
                 else
                 {
-                    pcbxImagen.Load("https://redthread.uoregon.edu/files/original/affd16fd5264cab9197da4cd1a996f820e601ee4.png");
+                    CargarPlaceHolderImagen();
                 }
             }
             catch (Exception)
             {
-                pcbxImagen.Load("https://redthread.uoregon.edu/files/original/affd16fd5264cab9197da4cd1a996f820e601ee4.png");
+                CargarPlaceHolderImagen();
             }
+        }
+
+        private void btnAgregarImagen_Click(object sender, EventArgs e)
+        {
+            listboxImagenesUrl.Items.Add(txtImagenUrl.Text);
+            txtImagenUrl.Text = "";
+        }
+
+        private void listboxImagenesUrl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listboxImagenesUrl.SelectedItem != null)
+            {
+                cargarImagen(listboxImagenesUrl.SelectedItem.ToString());
+            }
+        }
+
+        private void CargarPlaceHolderImagen()
+        {
+            pcbxImagen.Load("https://redthread.uoregon.edu/files/original/affd16fd5264cab9197da4cd1a996f820e601ee4.png");
         }
     }
 }

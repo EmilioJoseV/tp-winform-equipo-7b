@@ -122,7 +122,7 @@ namespace WinformApp
             {
                 if (cboCampo.SelectedIndex < 0)
                 {
-                    CargarArticulos(articuloNegocio.Listar());
+                    CargarArticulos(listaArticulos);
                     return;
                 }
 
@@ -135,8 +135,9 @@ namespace WinformApp
                 string campo = cboCampo.SelectedItem.ToString();
                 string criterio = cboCriterio.SelectedItem.ToString();
                 string filtro = cboFiltro.Text;
+                List<Articulo> articulosFiltrados = articuloNegocio.Listar(campo, criterio, filtro);
 
-                CargarArticulos(articuloNegocio.Listar(campo, criterio, filtro));
+                CargarArticulos(articulosFiltrados);
             }
             catch (Exception ex)
             {
@@ -219,6 +220,11 @@ namespace WinformApp
 
         private void btnVerDetalle_Click(object sender, EventArgs e)
         {
+            if(dgvArticulo.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccione un articulo para ver su detalle"); return;
+            }
+
             Articulo articuloSeleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
             frmDetalleArticulo frmDetalleArticulo = new frmDetalleArticulo(articuloSeleccionado);
             frmDetalleArticulo.ShowDialog();
