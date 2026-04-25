@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dominio;
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,8 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Dominio;
-using Negocio;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace WinformApp
@@ -60,20 +61,46 @@ namespace WinformApp
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            Marca marca = new Marca();
             MarcaNegocio negocio = new MarcaNegocio();
             try
             {
-                marca.Descripcion = textBox2.Text;
-                negocio.Agregar(marca);
-                MessageBox.Show("Agregado Exitosamente");
 
+                if (this.marca == null)
+                { // si la marca es nula crea una marca
+                    this.marca = new Marca();
+                    //que esta vacia se le pone una descripcion q va a ser igual a la descripcion del textbox
+                    marca.Descripcion = textBox2.Text;
+                    negocio.Agregar(marca);
+                }
+                else
+                {
+                    marca.Descripcion = textBox2.Text;
+
+                    negocio.ActualizarMarca(marca);
+
+                    MessageBox.Show("Agregado Exitosamente");
+                }
             }
             catch (Exception ex)
             {
 
                 MessageBox.Show(ex.ToString());
             }
+
+        }
+
+        private void FrmAltaMarca_Load(object sender, EventArgs e)
+        {
+            if (this.marca != null) {
+                textBox2.Text = marca.Descripcion;
+            }
+           /* MarcaNegocio marca = new MarcaNegocio();
+
+            
+            if (marca = !null)
+            {
+                textBox1.Text = marca.Descripcion;
+            }*/
 
         }
     }

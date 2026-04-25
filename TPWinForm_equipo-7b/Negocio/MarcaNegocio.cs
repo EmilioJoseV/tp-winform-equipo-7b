@@ -103,7 +103,13 @@ namespace Negocio
         }
 
         public void ActualizarMarca(Marca marca)
-        {         
+        {
+            
+            AccesoDatos.setearConsulta("UPDATE  MARCAS SET Descripcion = @Descripcion WHERE Id = @Id");
+            AccesoDatos.setearParametro("@Id", marca.Id);
+            AccesoDatos.setearParametro("@Descripcion", marca.Descripcion);
+
+            AccesoDatos.ejecutarAccion();
         } 
         public List<Marca> BuscarMarca(string criterio)
         {
