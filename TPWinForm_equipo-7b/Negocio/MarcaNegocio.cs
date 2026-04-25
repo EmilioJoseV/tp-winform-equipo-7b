@@ -86,8 +86,20 @@ namespace Negocio
         */
     
 
-        public void EliminarMarca(Marca marca) 
+        public void eliminar(Marca marca) 
         {
+            try
+            {
+
+                AccesoDatos.setearConsulta("DELETE FROM MARCA WHERE Id = @Id");
+                AccesoDatos.setearParametro("@Id", marca.Id);
+                AccesoDatos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         public void ActualizarMarca(Marca marca)
