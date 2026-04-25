@@ -89,8 +89,18 @@ namespace Negocio
         public void eliminar(Marca marca) 
         {
             try
-            {
+            {// antes de eliminar me fijo si hay un articulo que esta haciendo uso de esa marca
+                AccesoDatos.setearConsulta("select * from ARTICULOS where IdMarca = @Id");
+                AccesoDatos.setearParametro("@id", marca.Id);
+                AccesoDatos.ejecutarLectura();
 
+                if (AccesoDatos.Lector.Read())
+
+                {//cuando ve que una marca esta siendo usada mandara mensaje de error y este error lo manda a la funcion de frmAdministrar marcas
+
+                    throw new Exception("NO SE PUEDE ELIMINAR PORQUE LA MARCA ESTA SIENDO USADA");
+
+                }
                 AccesoDatos.setearConsulta("DELETE FROM MARCAS WHERE Id = @Id");
                 AccesoDatos.setearParametro("@Id", marca.Id);
                 AccesoDatos.ejecutarAccion();

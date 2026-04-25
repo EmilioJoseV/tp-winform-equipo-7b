@@ -79,7 +79,10 @@ namespace WinformApp
         private void btnEliminarFisico_Click(object sender, EventArgs e)
         {
             MarcaNegocio negocio= new MarcaNegocio();
-            
+
+           
+
+
             try
             { //validacion para saber si quiero eliminar,usando las sobrecargas de este metodo
                 //en un dialogResult guardo lo q m devuelve el metodo
@@ -96,7 +99,7 @@ namespace WinformApp
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message);
             }
         }
 
