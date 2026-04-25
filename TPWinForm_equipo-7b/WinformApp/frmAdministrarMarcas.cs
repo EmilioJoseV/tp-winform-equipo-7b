@@ -69,5 +69,10 @@ namespace WinformApp
 
 
         }
+
+        private void btnEliminarFisico_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
