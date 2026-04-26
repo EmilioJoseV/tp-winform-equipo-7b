@@ -105,17 +105,33 @@ namespace WinformApp
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            //obteniendo la fila q toque
-            
-            // le paso por parametro el objeto que quiero modificar
-            Marca seleccionado;
-            seleccionado = (Marca)dgvMarcas.CurrentRow.DataBoundItem;
-            //  se lo paso por parametro al constructor de la clase
-            
-            FrmAltaMarca modificar = new FrmAltaMarca(seleccionado);
-            modificar.ShowDialog();
-            cargar();
 
+
+            if (dgvMarcas.CurrentRow == null)
+            {
+                MessageBox.Show("favor, seleccione una marca de la lista para modificar");
+                return;
+            }
+            try
+            {
+                Marca seleccionado;
+                seleccionado = (Marca)dgvMarcas.CurrentRow.DataBoundItem;
+
+                FrmAltaMarca modificar = new FrmAltaMarca(seleccionado);
+                modificar.ShowDialog();
+                cargar();
+            }
+            catch (Exception ex)
+
+            {
+
+                MessageBox.Show("Ocurrio un intentar modificar" + ex.ToString());
+            }
+
+
+
+           
         }
+        
     }
 }
