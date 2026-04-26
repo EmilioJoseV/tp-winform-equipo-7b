@@ -33,7 +33,8 @@ namespace WinformApp
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             FrmAltaCategorias alta = new FrmAltaCategorias();
-            alta.ShowDialog(); 
+            alta.ShowDialog();
+            Cargar();
         }
 
 
@@ -69,8 +70,54 @@ namespace WinformApp
             }
         }
 
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (dgvCategorias.CurrentRow == null)
+            {
+                MessageBox.Show("Por favor, seleccione una categoría de la lista para modificar.");
+                return; 
+            }
+            try
+            {
+                Categoria seleccionado;
+                seleccionado = (Categoria)dgvCategorias.CurrentRow.DataBoundItem;
 
+                FrmAltaCategorias modificar = new FrmAltaCategorias(seleccionado);
+                modificar.ShowDialog();
+                Cargar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al intentar modificar: " + ex.ToString());
+            }
+        }
 
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            CategoriaNegocio negocio = new CategoriaNegocio();
+            try
+            {
+                if (dgvCategorias.CurrentRow == null)
+                {
+                    MessageBox.Show("Por favor, seleccione una categoría de la grilla para eliminar.");
+                    return;
+                }
 
+                Categoria seleccionado = (Categoria)dgvCategorias.CurrentRow.DataBoundItem;
+
+                DialogResult respuesta = MessageBox.Show("¿Seguro desea esta categoría?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    negocio.EliminarCategoria(seleccionado);
+                    MessageBox.Show("Eliminado correctamente.");
+                    Cargar();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
