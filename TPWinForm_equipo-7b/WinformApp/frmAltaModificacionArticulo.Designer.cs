@@ -164,6 +164,7 @@
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(354, 20);
             this.txtPrecio.TabIndex = 15;
+            this.txtPrecio.TextChanged += new System.EventHandler(this.txtPrecio_TextChanged);
             // 
             // txtImagenUrl
             // 

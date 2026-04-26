@@ -44,6 +44,7 @@
             this.btnLimpiarFiltros = new System.Windows.Forms.Button();
             this.txtFiltroRapido = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnLimpiarFiltroRapido = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbxArticulos)).BeginInit();
             this.SuspendLayout();
@@ -209,11 +210,24 @@
             this.label1.TabIndex = 17;
             this.label1.Text = "Filtro rapido";
             // 
+            // btnLimpiarFiltroRapido
+            // 
+            this.btnLimpiarFiltroRapido.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiarFiltroRapido.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnLimpiarFiltroRapido.Location = new System.Drawing.Point(333, 32);
+            this.btnLimpiarFiltroRapido.Name = "btnLimpiarFiltroRapido";
+            this.btnLimpiarFiltroRapido.Size = new System.Drawing.Size(179, 20);
+            this.btnLimpiarFiltroRapido.TabIndex = 18;
+            this.btnLimpiarFiltroRapido.Text = "Eliminar filtrado rapido";
+            this.btnLimpiarFiltroRapido.UseVisualStyleBackColor = true;
+            this.btnLimpiarFiltroRapido.Click += new System.EventHandler(this.btnLimpiarFiltroRapido_Click);
+            // 
             // frmAdministrarArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1042, 405);
+            this.Controls.Add(this.btnLimpiarFiltroRapido);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtFiltroRapido);
             this.Controls.Add(this.btnLimpiarFiltros);
@@ -259,6 +273,7 @@
         private System.Windows.Forms.Button btnLimpiarFiltros;
         private System.Windows.Forms.TextBox txtFiltroRapido;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnLimpiarFiltroRapido;
     }
 }
 

@@ -36,6 +36,18 @@ namespace WinformApp
             }
         }
 
+        private void CargarArticulos()
+        {
+            try
+            {   
+                CargarArticulos(articuloNegocio.Listar());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
         private void CargarArticulos(List<Articulo> articulos)
         {
             try
@@ -93,31 +105,24 @@ namespace WinformApp
             pcbxArticulos.Load("https://redthread.uoregon.edu/files/original/affd16fd5264cab9197da4cd1a996f820e601ee4.png");
         }
 
-      
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmAltaModificacionArticulo alta = new frmAltaModificacionArticulo();
             alta.ShowDialog();
-            CargarArticulosConFiltros();
+            CargarArticulos();
         }
 
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
-            ValidarSeleccionDeArticulo();
+            if (!EsSeleccionDeArticuloValida()) return;
             Articulo seleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
             frmAltaModificacionArticulo modificar = new frmAltaModificacionArticulo(seleccionado);
             modificar.ShowDialog();
-            CargarArticulosConFiltros();
+            CargarArticulos();
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
-        {         
-            if(string.IsNullOrEmpty(cboFiltro.Text))
-            {
-                MessageBox.Show("Ingrese un filtro para la busqueda");
-                return;
-            }
-
+        {
             CargarArticulosConFiltros();
         }
 
@@ -125,18 +130,24 @@ namespace WinformApp
         {
             try
             {
-                if (cboCampo.SelectedIndex < 0)
+                if(cboCampo.SelectedIndex < 0)
                 {
-                    listaArticulos = articuloNegocio.Listar();
-                    CargarArticulos(listaArticulos);
+                    MessageBox.Show("Seleccione un campo para filtrar");
                     return;
                 }
 
                 if (cboCriterio.SelectedIndex < 0)
                 {
-                    MessageBox.Show("Ingrese un criterio");
+                    MessageBox.Show("Seleccione un criterio para filtrar");
                     return;
                 }
+
+                if (string.IsNullOrEmpty(cboFiltro.Text))
+                {
+                    MessageBox.Show("Ingrese un filtro para la busqueda");
+                    return;
+                }
+      
 
                 if (EsBusquedaConFiltrosValida() == false)
                 {
@@ -231,7 +242,7 @@ namespace WinformApp
             cboCampo.SelectedIndex = -1;
             cboCriterio.SelectedIndex = -1;
             cboFiltro.Text = "";
-            CargarArticulosConFiltros();
+            CargarArticulos(articuloNegocio.Listar());
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -244,24 +255,27 @@ namespace WinformApp
                 Articulo articuloSeleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
                 articuloNegocio.Eliminar(articuloSeleccionado);
                 MessageBox.Show("Articulo eliminado exitosamente!");
-                CargarArticulosConFiltros();
+                listaArticulos = articuloNegocio.Listar();
+                CargarArticulos();
             }
         }
 
         private void btnVerDetalle_Click(object sender, EventArgs e)
         {
-            ValidarSeleccionDeArticulo();
+            if (!EsSeleccionDeArticuloValida()) return;
             Articulo articuloSeleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
             frmDetalleArticulo frmDetalleArticulo = new frmDetalleArticulo(articuloSeleccionado);
             frmDetalleArticulo.ShowDialog();
         }
 
-        private void ValidarSeleccionDeArticulo()
+        private Boolean EsSeleccionDeArticuloValida()
         {
             if (dgvArticulo.CurrentRow == null)
             {
-                MessageBox.Show("Seleccione un Articulo para ver su detalle"); return;
+                MessageBox.Show("Seleccione un Articulo antes de realizar una operacion"); return false;
             }
+
+            return true;
         }
 
         private void pcbxArticulos_Click(object sender, EventArgs e)
@@ -289,8 +303,14 @@ namespace WinformApp
                 CargarArticulos(articulosFiltroRapido);
             } else
             {
-                CargarArticulos(listaArticulos);
+                CargarArticulos();
             }
+        }
+
+        private void btnLimpiarFiltroRapido_Click(object sender, EventArgs e)
+        {
+           txtFiltroRapido.Text = "";
+           CargarArticulos();
         }
     }
 }

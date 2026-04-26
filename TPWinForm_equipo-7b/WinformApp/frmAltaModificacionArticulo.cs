@@ -32,10 +32,11 @@ namespace WinformApp
 
             try
             {
-               if(this.Articulo == null)
+               if(this.Articulo == null || this.Articulo.Id == 0)
                 {
                     //Si es creacion de Articulo crear nuevo Articulo y poblarlo con datos del formulario
                     Articulo = new Articulo();
+                    if (EsArticuloValido() == false) return; // Validar campos del formulario antes de poblar el Articulo
                     PoblarArticulo();
                     ArticuloNegocio.Crear(Articulo);
                     MessageBox.Show("Articulo creado exitosamente");
@@ -45,6 +46,7 @@ namespace WinformApp
                 {
                     //Si es actualizacion de Articulo poblar Articulo con datos del formulario y actualizarlo
                     PoblarArticulo();
+                    if(EsArticuloValido() == false) return; // Validar campos del formulario antes de poblar el Articulo
                     ArticuloNegocio.Actualizar(Articulo);
                     MessageBox.Show("Articulo modificado exitosamente");
                     Close();
@@ -64,6 +66,62 @@ namespace WinformApp
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private Boolean EsArticuloValido()
+        {
+            List<string> errores = new List<string>();
+
+            //Validar obligatorios
+            if (string.IsNullOrWhiteSpace(txtCodigo.Text))
+            {
+                errores.Add("El campo Codigo es obligatorio.");
+            }
+
+            if (string.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                errores.Add("El campo Nombre es obligatorio.");
+            }
+
+            if (string.IsNullOrWhiteSpace(txtDescripcion.Text))
+            {
+                errores.Add("El campo Descripcion es obligatorio.");
+            }
+
+            if (cmbxMarca.SelectedItem == null)
+            {
+                errores.Add("El campo Marca es obligatorio.");
+            }
+
+            if (cmbxCategoria.SelectedItem == null)
+            {
+                errores.Add("El campo Categoria es obligatorio.");
+            }
+
+            if (string.IsNullOrWhiteSpace(txtPrecio.Text))
+            {
+                errores.Add("El campo Precio es obligatorio.");
+            }
+
+            if (listboxImagenesUrl.Items.Count == 0)
+            {
+                errores.Add("El articulo debe tener al menos 1 imagen.");
+            }
+
+            //Validar formato de campos
+            if (!float.TryParse(txtPrecio.Text, out _))
+            {
+                errores.Add("El campo Precio debe ser un numero valido.");
+            }
+
+
+            if (errores.Count > 0)
+            {
+                MessageBox.Show(string.Join(Environment.NewLine, errores));
+                return false;
+            }
+
+            return true;
         }
 
         private void PoblarArticulo()
@@ -198,6 +256,11 @@ namespace WinformApp
                     CargarPlaceHolderImagen();
                 }
             }
+
+        }
+
+        private void txtPrecio_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }
