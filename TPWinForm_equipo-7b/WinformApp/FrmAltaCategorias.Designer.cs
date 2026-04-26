@@ -39,9 +39,11 @@ namespace WinformApp
             // txtDescripcion
             // 
             this.txtDescripcion.AutoSize = true;
+            this.txtDescripcion.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDescripcion.Location = new System.Drawing.Point(23, 40);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(63, 13);
+            this.txtDescripcion.Size = new System.Drawing.Size(65, 15);
             this.txtDescripcion.TabIndex = 0;
             this.txtDescripcion.Tag = "Articulo";
             this.txtDescripcion.Text = "Descripcion";
@@ -56,7 +58,7 @@ namespace WinformApp
             // btnCancelar
             // 
             this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnCancelar.Location = new System.Drawing.Point(310, 165);
+            this.btnCancelar.Location = new System.Drawing.Point(322, 105);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 5;
@@ -67,7 +69,7 @@ namespace WinformApp
             // btnAceptar
             // 
             this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAceptar.Location = new System.Drawing.Point(67, 165);
+            this.btnAceptar.Location = new System.Drawing.Point(67, 105);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
             this.btnAceptar.TabIndex = 6;
@@ -79,7 +81,8 @@ namespace WinformApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(491, 330);
+            this.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.ClientSize = new System.Drawing.Size(514, 270);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.txtCategoria);

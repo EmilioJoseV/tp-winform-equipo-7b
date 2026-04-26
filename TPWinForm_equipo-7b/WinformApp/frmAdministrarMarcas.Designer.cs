@@ -48,16 +48,16 @@
             // dgvMarcas
             // 
             this.dgvMarcas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMarcas.Location = new System.Drawing.Point(29, 12);
+            this.dgvMarcas.Location = new System.Drawing.Point(12, 12);
             this.dgvMarcas.Name = "dgvMarcas";
-            this.dgvMarcas.Size = new System.Drawing.Size(480, 235);
+            this.dgvMarcas.Size = new System.Drawing.Size(419, 233);
             this.dgvMarcas.TabIndex = 1;
             this.dgvMarcas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMarcas_CellContentClick);
             // 
             // btnEliminarFisico
             // 
             this.btnEliminarFisico.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarFisico.Location = new System.Drawing.Point(153, 320);
+            this.btnEliminarFisico.Location = new System.Drawing.Point(130, 321);
             this.btnEliminarFisico.Name = "btnEliminarFisico";
             this.btnEliminarFisico.Size = new System.Drawing.Size(75, 23);
             this.btnEliminarFisico.TabIndex = 2;
@@ -67,7 +67,7 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(293, 319);
+            this.btnModificar.Location = new System.Drawing.Point(228, 321);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(75, 23);
             this.btnModificar.TabIndex = 3;
@@ -79,6 +79,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ClientSize = new System.Drawing.Size(588, 355);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnEliminarFisico);
