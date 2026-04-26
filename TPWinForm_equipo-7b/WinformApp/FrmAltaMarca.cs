@@ -62,6 +62,23 @@ namespace WinformApp
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             MarcaNegocio negocio = new MarcaNegocio();
+
+            string texto = textBox2.Text;
+
+            if (string.IsNullOrWhiteSpace(texto))
+            {
+                MessageBox.Show("El campo no puede estar vacío.");
+                return;
+            }
+
+            foreach (char caracter in texto)
+            {
+                if (!char.IsLetter(caracter) && !char.IsWhiteSpace(caracter))
+                {
+                    MessageBox.Show("Error: La marca solo puede contener letras.");
+                    return;
+                }
+            }
             try
             {
 

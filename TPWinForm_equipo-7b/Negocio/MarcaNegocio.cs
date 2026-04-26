@@ -101,6 +101,8 @@ namespace Negocio
                     throw new Exception("NO SE PUEDE ELIMINAR PORQUE LA MARCA ESTA SIENDO USADA");
 
                 }
+                AccesoDatos.cerrarConexion();
+
                 AccesoDatos.setearConsulta("DELETE FROM MARCAS WHERE Id = @Id");
                 AccesoDatos.setearParametro("@Id", marca.Id);
                 AccesoDatos.ejecutarAccion();
@@ -110,6 +112,12 @@ namespace Negocio
 
                 throw;
             }
+            finally
+            {
+                AccesoDatos.cerrarConexion();
+            }
+
+
         }
 
         public void ActualizarMarca(Marca marca)

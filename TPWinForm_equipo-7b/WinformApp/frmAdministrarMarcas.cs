@@ -79,14 +79,15 @@ namespace WinformApp
         private void btnEliminarFisico_Click(object sender, EventArgs e)
         {
             MarcaNegocio negocio = new MarcaNegocio();
+
+           
             try
             {
-                if (dgvMarcas.SelectedRows.Count == 0)
+                if (dgvMarcas.CurrentRow == null)
                 {
                     MessageBox.Show("seleccione una opcion para eliminar");
-                    return; 
+                    return;
                 }
-            
                 DialogResult dialogResult = MessageBox.Show("Seguro quieres eliminar?", "Eliminando", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (dialogResult == DialogResult.Yes)

@@ -95,6 +95,10 @@ namespace WinformApp
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             CategoriaNegocio negocio = new CategoriaNegocio();
+
+
+
+            
             try
             {
                 if (dgvCategorias.CurrentRow == null)
@@ -105,7 +109,7 @@ namespace WinformApp
 
                 Categoria seleccionado = (Categoria)dgvCategorias.CurrentRow.DataBoundItem;
 
-                DialogResult respuesta = MessageBox.Show("¿Seguro desea esta categoría?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                 DialogResult respuesta = MessageBox.Show("¿Seguro desea eliminar esta categoría?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (respuesta == DialogResult.Yes)
                 {
