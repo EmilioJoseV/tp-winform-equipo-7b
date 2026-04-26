@@ -79,11 +79,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(588, 355);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnEliminarFisico);
             this.Controls.Add(this.dgvMarcas);
             this.Controls.Add(this.btnAgregar);
+            this.MaximumSize = new System.Drawing.Size(604, 394);
+            this.MinimumSize = new System.Drawing.Size(604, 394);
             this.Name = "frmAdministrarMarcas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmAdministrarMarcas";

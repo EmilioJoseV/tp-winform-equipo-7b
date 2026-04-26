@@ -78,12 +78,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(588, 350);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.dgvCategorias);
             this.Controls.Add(this.btnAgregar);
+            this.MaximumSize = new System.Drawing.Size(604, 389);
+            this.MinimumSize = new System.Drawing.Size(604, 389);
             this.Name = "frmAdministrarCategorias";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmAdministrarCategorias";
             this.Load += new System.EventHandler(this.frmAdministrarCategorias_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategorias)).EndInit();
