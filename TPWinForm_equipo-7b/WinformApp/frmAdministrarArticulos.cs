@@ -121,6 +121,7 @@ namespace WinformApp
             {
                 if (cboCampo.SelectedIndex < 0)
                 {
+                    listaArticulos = articuloNegocio.Listar();
                     CargarArticulos(listaArticulos);
                     return;
                 }
@@ -134,6 +135,7 @@ namespace WinformApp
                 string campo = cboCampo.SelectedItem.ToString();
                 string criterio = cboCriterio.SelectedItem.ToString();
                 string filtro = cboFiltro.Text;
+
                 List<Articulo> articulosFiltrados = articuloNegocio.Listar(campo, criterio, filtro);
 
                 CargarArticulos(articulosFiltrados);
@@ -229,7 +231,7 @@ namespace WinformApp
         {
             if (dgvArticulo.CurrentRow == null)
             {
-                MessageBox.Show("Seleccione un articulo para ver su detalle"); return;
+                MessageBox.Show("Seleccione un Articulo para ver su detalle"); return;
             }
         }
 

@@ -65,6 +65,31 @@ namespace Negocio
                 throw ex;
             }
         }
+
+        public int ejecutarCreacionRetornandoId()
+        {
+            comando.Connection = conexion;
+            
+            try
+            {
+                conexion.Open();
+                object resultado = comando.ExecuteScalar();
+                if (resultado != null && resultado != DBNull.Value)
+                    return Convert.ToInt32(resultado);
+
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+
         public void setearParametro(string nombreParam, object valorParam)
         {
             comando.Parameters.AddWithValue(nombreParam, valorParam);

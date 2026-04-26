@@ -8,8 +8,8 @@ namespace WinformApp
 {
     public partial class frmAltaModificacionArticulo : Form
     {
-        private Articulo articulo = null;
-        private ArticuloNegocio articuloNegocio;
+        private Articulo Articulo = null;
+        private readonly ArticuloNegocio ArticuloNegocio = new ArticuloNegocio();
 
         public frmAltaModificacionArticulo()
         {
@@ -19,7 +19,7 @@ namespace WinformApp
         public frmAltaModificacionArticulo(Articulo articulo)
         {
             InitializeComponent();
-            this.articulo = articulo;
+            this.Articulo = articulo;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -29,37 +29,60 @@ namespace WinformApp
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            Articulo articulo = new Articulo();
 
             try
             {
-                articulo.Codigo = txtCodigo.Text;
-                articulo.Nombre = txtNombre.Text;
-                articulo.Descripcion = txtDescripcion.Text;
-                articulo.Marca = (Marca)cmbxMarca.SelectedItem;
-                articulo.Categoria = (Categoria)cmbxCategoria.SelectedItem;
-                articulo.Precio = float.Parse(txtPrecio.Text);
+               if(this.Articulo == null)
+                {
+                    //Si es creacion de Articulo crear nuevo Articulo y poblarlo con datos del formulario
+                    Articulo = new Articulo();
+                    PoblarArticulo();
+                    ArticuloNegocio.Crear(Articulo);
+                    MessageBox.Show("Articulo creado exitosamente");
+                    Close();
+                }
+                else
+                {
+                    //Si es actualizacion de Articulo poblar Articulo con datos del formulario y actualizarlo
+                    PoblarArticulo();
+                    ArticuloNegocio.Actualizar(Articulo);
+                    MessageBox.Show("Articulo modificado exitosamente");
+                    Close();
+                }
+
 
                 List<Imagen> imagenes = new List<Imagen>();
+                
                 foreach (var item in listboxImagenesUrl.Items)
                 {
                     imagenes.Add(new Imagen { ImagenUrl = item.ToString() });
                 }
-                articulo.Imagenes = imagenes;
 
-                articuloNegocio.Crear(articulo);
-
-                MessageBox.Show("Agregado Exitosamente");
-                Close();
-
-
+                Articulo.Imagenes = imagenes;
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        private void PoblarArticulo()
+        {
+            Articulo.Codigo = txtCodigo.Text;
+            Articulo.Nombre = txtNombre.Text;
+            Articulo.Descripcion = txtDescripcion.Text;
+            Articulo.Marca = (Marca)cmbxMarca.SelectedItem;
+            Articulo.Categoria = (Categoria)cmbxCategoria.SelectedItem;
+            Articulo.Precio = float.Parse(txtPrecio.Text);
+            
+            //Poblar imagenes
+            Articulo.Imagenes = new List<Imagen>();
+            
+            foreach (var item in listboxImagenesUrl.Items)
+            {
+                Articulo.Imagenes.Add(new Imagen { ImagenUrl = item.ToString() });
+            }
+    }
 
         private void frmAltaArticulo_Load(object sender, EventArgs e)
         {
@@ -68,30 +91,42 @@ namespace WinformApp
 
             try
             {
-                if (this.articulo == null)
-                {
-                    //Crear articulo
-                    cmbxMarca.DataSource = marcaNegocio.Listar();
-                    cmbxMarca.ValueMember = "Id";
-                    cmbxMarca.DisplayMember = "Descripcion";
+                //Creacion y modificacion de Articulo
+                cmbxCategoria.DataSource = categoriaNegocio.Listar();
+                cmbxCategoria.ValueMember = "Id";
+                cmbxCategoria.DisplayMember = "Descripcion";
+                cmbxCategoria.SelectedValue = -1;
 
-                    cmbxCategoria.DataSource = categoriaNegocio.Listar();
-                    cmbxCategoria.ValueMember = "Id";
-                    cmbxCategoria.DisplayMember = "Descripcion";
+                cmbxMarca.DataSource = marcaNegocio.Listar();
+                cmbxMarca.ValueMember = "Id";
+                cmbxMarca.DisplayMember = "Descripcion";
+                cmbxMarca.SelectedValue = -1;
+
+                //Cargar imagenes
+                if (Articulo != null && Articulo.Imagenes != null && Articulo.Imagenes.Count > 0)
+                {
+                    cargarImagen(Articulo.Imagenes[0].ImagenUrl);
+                    
+                    foreach (var imagen in Articulo.Imagenes)
+                    {
+                        listboxImagenesUrl.Items.Add(imagen.ImagenUrl);
+                    }
                 }
                 else
                 {
-                    //Actualizar articulo
-                    txtCodigo.Text = articulo.Codigo.ToString();
-                    txtNombre.Text = articulo.Nombre;
-                    txtDescripcion.Text = articulo.Descripcion;
-                    txtPrecio.Text = articulo.Precio.ToString();
+                    CargarPlaceHolderImagen();
+                }
 
-                    if (articulo.Imagenes != null && articulo.Imagenes.Count > 0)
-                    {
-                        cargarImagen(articulo.Imagenes[0].ImagenUrl);
-                    }
 
+                if (this.Articulo != null)
+                {
+                    //Si es actualizacion de Articulo poblar campos con datos del Articulo
+                    txtCodigo.Text = Articulo.Codigo.ToString();
+                    txtNombre.Text = Articulo.Nombre;
+                    txtDescripcion.Text = Articulo.Descripcion;
+                    txtPrecio.Text = Articulo.Precio.ToString();
+                    cmbxCategoria.SelectedValue = Articulo.Categoria.Id;
+                    cmbxMarca.SelectedValue = Articulo.Marca.Id;
                 }
             }
             catch (Exception ex)
@@ -146,6 +181,24 @@ namespace WinformApp
         private void btnVistaPrev_Click(object sender, EventArgs e)
         {
             cargarImagen(txtImagenUrl.Text);
+        }
+
+        private void btnQuitarImagen_Click(object sender, EventArgs e)
+        {
+            if (listboxImagenesUrl.SelectedItem != null)
+            {
+                listboxImagenesUrl.Items.Remove(listboxImagenesUrl.SelectedItem);
+                
+                if (listboxImagenesUrl.Items.Count > 0)
+                {
+                    cargarImagen(listboxImagenesUrl.Items[0].ToString());
+                }
+                else
+                {
+                    CargarPlaceHolderImagen();
+                }
+            }
+
         }
     }
 }

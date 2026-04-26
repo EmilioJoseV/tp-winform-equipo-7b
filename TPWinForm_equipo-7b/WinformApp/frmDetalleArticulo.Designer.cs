@@ -275,7 +275,7 @@
             this.Controls.Add(this.lblId);
             this.Name = "frmDetalleArticulo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Detalle de articulo";
+            this.Text = "Detalle de Articulo";
             this.Load += new System.EventHandler(this.frmDetalleArticulo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pcbxImagenes)).EndInit();
             this.ResumeLayout(false);

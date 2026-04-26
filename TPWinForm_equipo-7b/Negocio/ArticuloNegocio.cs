@@ -152,10 +152,11 @@ namespace Negocio
 
         public void Crear(Articulo articulo)
         {
-            AccesoDatos datos = new AccesoDatos();
             try
             {
-                AccesoDatos.setearConsulta("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) VALUES (@Codigo, @Nombre, @Descripcion, @IdMarca, @IdCategoria, @Precio)");
+                AccesoDatos.setearConsulta(
+                    "INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) " +
+                    "OUTPUT INSERTED.Id VALUES (@Codigo, @Nombre, @Descripcion, @IdMarca, @IdCategoria, @Precio)");
 
                 AccesoDatos.setearParametro("@Codigo", articulo.Codigo);
                 AccesoDatos.setearParametro("@Nombre", articulo.Nombre);
@@ -164,13 +165,13 @@ namespace Negocio
                 AccesoDatos.setearParametro("@IdCategoria", articulo.Categoria.Id);
                 AccesoDatos.setearParametro("@Precio", articulo.Precio);
 
-                //TODO Aca no olvidarnos que una vez creado el articulo tenemos que crear las imagenes asociadas al ID del articulo.
-                //TODO Hacerlo aca.
-                AccesoDatos.ejecutarAccion();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                int articuloId = AccesoDatos.ejecutarCreacionRetornandoId();
+
+                articulo.Imagenes.ForEach(imagen =>
+                {
+                    imagen.IdArticulo = articuloId;
+                    ImagenNegocio.Agregar(imagen);
+                });
             }
             finally
             {
@@ -180,7 +181,6 @@ namespace Negocio
 
         public void Actualizar(Articulo articulo)
         {
-            AccesoDatos datos = new AccesoDatos();
             try
             {
                 AccesoDatos.setearConsulta("UPDATE ARTICULOS SET Codigo = @Codigo, Nombre = @Nombre, Descripcion = @Descripcion, Precio = @Precio, IdMarca = @IdMarca, IdCategoria = @IdCategoria WHERE Id = @Id");
@@ -190,8 +190,16 @@ namespace Negocio
                 AccesoDatos.setearParametro("@Precio", articulo.Precio);
                 AccesoDatos.setearParametro("@IdMarca", articulo.Marca.Id);
                 AccesoDatos.setearParametro("@IdCategoria", articulo.Categoria.Id);
+                AccesoDatos.setearParametro("@Id", articulo.Id);
 
                 AccesoDatos.ejecutarAccion();
+                
+                ImagenNegocio.EliminarPorArticuloId(articulo.Id);
+                articulo.Imagenes.ForEach(imagen =>
+                {
+                    imagen.IdArticulo = articulo.Id;
+                    ImagenNegocio.Agregar(imagen);
+                });
             }
             catch (Exception ex)
             {

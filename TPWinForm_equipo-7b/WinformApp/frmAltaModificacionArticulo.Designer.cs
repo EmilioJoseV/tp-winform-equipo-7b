@@ -236,6 +236,7 @@
             this.btnQuitarImagen.TabIndex = 22;
             this.btnQuitarImagen.Text = "Borrar imagen";
             this.btnQuitarImagen.UseVisualStyleBackColor = true;
+            this.btnQuitarImagen.Click += new System.EventHandler(this.btnQuitarImagen_Click);
             // 
             // btnVistaPrevia
             // 
@@ -286,7 +287,7 @@
             this.Controls.Add(this.lblCodigo);
             this.Name = "frmAltaModificacionArticulo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Alta / Modificacion de articulo";
+            this.Text = "Alta / Modificacion de Articulo";
             this.Load += new System.EventHandler(this.frmAltaArticulo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pcbxImagen)).EndInit();
             this.ResumeLayout(false);

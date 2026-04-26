@@ -18,7 +18,7 @@ namespace Negocio
         public ImagenNegocio()
         {
             AccesoDatos = new AccesoDatos();
-        }   
+        }
 
         public List<Imagen> Listar()
         {
@@ -83,7 +83,7 @@ namespace Negocio
                 AccesoDatos.setearConsulta("SELECT Id, IdArticulo, ImagenUrl FROM IMAGENES WHERE IdArticulo = @id");
                 AccesoDatos.setearParametro("@id", id);
                 AccesoDatos.ejecutarLectura();
-                
+
                 while (AccesoDatos.Lector.Read())
                 {
                     Imagen aux = new Imagen();
@@ -105,6 +105,24 @@ namespace Negocio
                 AccesoDatos.cerrarConexion();
             }
 
+        }
+
+        public void EliminarPorArticuloId(int idArticulo)
+        {
+            try
+            {
+                AccesoDatos.setearConsulta("DELETE FROM IMAGENES WHERE IdArticulo = @idArticulo");
+                AccesoDatos.setearParametro("@idArticulo", idArticulo);
+                AccesoDatos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                AccesoDatos.cerrarConexion();
+            }
         }
     }
 }
