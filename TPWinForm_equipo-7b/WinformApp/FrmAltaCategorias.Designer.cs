@@ -31,7 +31,7 @@ namespace WinformApp
         private void InitializeComponent()
         {
             this.txtDescripcion = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtCategoria = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -46,12 +46,12 @@ namespace WinformApp
             this.txtDescripcion.Tag = "Articulo";
             this.txtDescripcion.Text = "Descripcion";
             // 
-            // textBox1
+            // txtCategoria
             // 
-            this.textBox1.Location = new System.Drawing.Point(125, 33);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 2;
+            this.txtCategoria.Location = new System.Drawing.Point(125, 33);
+            this.txtCategoria.Name = "txtCategoria";
+            this.txtCategoria.Size = new System.Drawing.Size(100, 20);
+            this.txtCategoria.TabIndex = 2;
             // 
             // btnCancelar
             // 
@@ -80,7 +80,7 @@ namespace WinformApp
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtCategoria);
             this.Controls.Add(this.txtDescripcion);
             this.Name = "FrmAltaCategorias";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -98,7 +98,7 @@ namespace WinformApp
         #endregion
 
         private System.Windows.Forms.Label txtDescripcion;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtCategoria;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnAceptar;
     }

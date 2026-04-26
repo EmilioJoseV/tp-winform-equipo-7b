@@ -99,10 +99,48 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
+            
+        }
 
+        public void ActualizarCategoria(Categoria categoria)
+        {
 
+            AccesoDatos.setearConsulta("UPDATE  CATEGORIAS SET Descripcion = @Descripcion WHERE Id = @Id");
+            AccesoDatos.setearParametro("@Id", categoria.Id);
+            AccesoDatos.setearParametro("@Descripcion", categoria.Descripcion);
 
+            AccesoDatos.ejecutarAccion();
+        }
 
+        public void EliminarCategoria(Categoria categoria)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("select Id from ARTICULOS where IdCategoria = @Id");
+                datos.setearParametro("@Id", categoria.Id);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    throw new Exception("No se puede eliminar la categoría porque existen artículos vinculados a ella.");
+                }
+
+                datos.cerrarConexion();
+
+                datos = new AccesoDatos();
+                datos.setearConsulta("DELETE FROM CATEGORIAS WHERE Id = @Id");
+                datos.setearParametro("@Id", categoria.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
     }
 }

@@ -14,6 +14,15 @@ namespace WinformApp
 {
     public partial class FrmAltaCategorias : Form
     {
+
+        private Categoria categoria = null;
+
+        public FrmAltaCategorias(Categoria seleccionado)
+        {
+            InitializeComponent();
+            this.categoria = seleccionado;
+            Text = "Modificar Categoría";
+        }
         public FrmAltaCategorias()
         {
             InitializeComponent();
@@ -52,27 +61,50 @@ namespace WinformApp
 
         private void btnAceptar_Click_1(object sender, EventArgs e)
         {
-            Categoria categoria = new Categoria();
             CategoriaNegocio negocio = new CategoriaNegocio();
+
+            string texto = txtCategoria.Text;
+
+            if (string.IsNullOrWhiteSpace(texto))
+            {
+                MessageBox.Show("El campo no puede estar vacío.");
+                return;
+            }
+
+            foreach (char caracter in texto)
+            {
+                if (!char.IsLetter(caracter) && !char.IsWhiteSpace(caracter))
+                {
+                    MessageBox.Show("Error: La categoría solo puede contener letras.");
+                    return;
+                }
+            }
+
             try
             {
+                if (categoria == null)
+                    categoria = new Categoria();
+
+                categoria.Descripcion = txtCategoria.Text;
+
+                if (categoria.Id != 0)
+                {
+                    negocio.ActualizarCategoria(categoria);
+                    MessageBox.Show("Modificado Exitosamente");
+                }
+                else
+                {
+                    negocio.Agregar(categoria);
+                    MessageBox.Show("Agregado Exitosamente");
+                }
+
                 
-             // categoria.Descripcion = textBox1.Text;
-                categoria.Descripcion = textBox1.Text;
-                negocio.Agregar(categoria);
-                MessageBox.Show("Agregado Exitosamente");
-
-                categoria.Descripcion=txtDescripcion.Text;
-
-
-
+                Close();
             }
             catch (Exception ex)
             {
-
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Error al procesar la categoría: " + ex.ToString());
             }
-
         }
     }
 }
