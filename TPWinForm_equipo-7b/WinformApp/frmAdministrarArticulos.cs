@@ -112,6 +112,12 @@ namespace WinformApp
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {         
+            if(string.IsNullOrEmpty(cboFiltro.Text))
+            {
+                MessageBox.Show("Ingrese un filtro para la busqueda");
+                return;
+            }
+
             CargarArticulosConFiltros();
         }
 
@@ -132,6 +138,12 @@ namespace WinformApp
                     return;
                 }
 
+                if (EsBusquedaConFiltrosValida() == false)
+                {
+                    MessageBox.Show("El filtro ingresado no es valido para el campo seleccionado");
+                    return;
+                }                    
+               
                 string campo = cboCampo.SelectedItem.ToString();
                 string criterio = cboCriterio.SelectedItem.ToString();
                 string filtro = cboFiltro.Text;
@@ -144,6 +156,22 @@ namespace WinformApp
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private Boolean EsBusquedaConFiltrosValida()
+        {
+            string campo = cboCampo.SelectedItem.ToString();
+            string filtro = cboFiltro.Text;
+            
+            if (campo == "Precio")
+            {
+                if (!float.TryParse(filtro, out float precio))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -215,6 +243,7 @@ namespace WinformApp
             {
                 Articulo articuloSeleccionado = (Articulo)dgvArticulo.CurrentRow.DataBoundItem;
                 articuloNegocio.Eliminar(articuloSeleccionado);
+                MessageBox.Show("Articulo eliminado exitosamente!");
                 CargarArticulosConFiltros();
             }
         }

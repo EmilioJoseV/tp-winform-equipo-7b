@@ -215,6 +215,8 @@ namespace Negocio
         {
             try
             {
+                ImagenNegocio.EliminarPorArticuloId(articulo.Id);
+
                 AccesoDatos.setearConsulta("DELETE FROM ARTICULOS WHERE Id = @Id");
                 AccesoDatos.setearParametro("@Id", articulo.Id);
                 AccesoDatos.ejecutarAccion();
