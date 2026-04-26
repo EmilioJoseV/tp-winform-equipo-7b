@@ -78,14 +78,15 @@ namespace WinformApp
 
         private void btnEliminarFisico_Click(object sender, EventArgs e)
         {
-            MarcaNegocio negocio= new MarcaNegocio();
-
-           
-
-
+            MarcaNegocio negocio = new MarcaNegocio();
             try
-            { //validacion para saber si quiero eliminar,usando las sobrecargas de este metodo
-                //en un dialogResult guardo lo q m devuelve el metodo
+            {
+                if (dgvMarcas.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("seleccione una opcion para eliminar");
+                    return; 
+                }
+            
                 DialogResult dialogResult = MessageBox.Show("Seguro quieres eliminar?", "Eliminando", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (dialogResult == DialogResult.Yes)
@@ -93,13 +94,12 @@ namespace WinformApp
                     Marca marcaSeleccionado = (Marca)dgvMarcas.CurrentRow.DataBoundItem;
                     negocio.eliminar(marcaSeleccionado);
                     cargar();
-                    //debo hacer la funcion cargar para actualizar la grilla
+                   
                 }
             }
             catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
+            { 
+               MessageBox.Show(ex.Message);
             }
         }
 

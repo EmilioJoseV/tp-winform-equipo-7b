@@ -94,13 +94,7 @@ namespace WinformApp
             if (this.marca != null) {
                 textBox2.Text = marca.Descripcion;
             }
-           /* MarcaNegocio marca = new MarcaNegocio();
-
-            
-            if (marca = !null)
-            {
-                textBox1.Text = marca.Descripcion;
-            }*/
+           
 
         }
     }
